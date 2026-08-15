@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>נעמה כהן — מנכ״לית, אסטרטגיה וקשרי ממשל</title>
+<meta name="description" content="נעמה כהן — מנכ״לית מרשם, ארגון המתמחים לרפואה. אסטרטגיה, קשרי ממשל, חקיקה וקמפיינים ציבוריים.">
+<meta name="theme-color" content="#07090B">
+<meta property="og:title" content="נעמה כהן — מנכ״לית, אסטרטגיה וקשרי ממשל">
+<meta property="og:description" content="מובילה ארגונים וקמפיינים שמשנים מדיניות — מתנאי ההעסקה של הרופאים המתמחים ועד לחקיקה בכנסת.">
+<meta property="og:type" content="profile">
+<meta property="og:image" content="img/portrait.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=IBM+Plex+Sans+Hebrew:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --display:"Frank Ruhl Libre", "Times New Roman", serif;
+  --sans:"IBM Plex Sans Hebrew", system-ui, sans-serif;
+  --ink:#07090B;
+  --ink-2:#101418;
+  --paper:#EFE6D4;
+  --paper-2:#E4D8C0;
+  --rose:#E23B6A;
+  --rose-deep:#B81D4A;
+  --brass:#C9A45C;
+  --mist:#9AA3A0;
+  --line:rgba(243,235,221,.14);
+  --gutter:clamp(20px, 5vw, 72px);
+  --max:1220px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--sans);
+  font-weight:400;
+  font-size:clamp(16px, 1.05vw, 18px);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.02;letter-spacing:-.03em}
+a{color:inherit}
+img{max-width:100%;display:block}
+::selection{background:var(--rose);color:#fff}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+
+/* grain + progress */
+.grain{
+  position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.07;
+  mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+#progress{
+  position:fixed;top:0;inset-inline:0;height:2px;z-index:100;
+  background:var(--rose);transform:scaleX(0);transform-origin:right center;
+  pointer-events:none;
+}
+[dir=ltr] #progress{transform-origin:left center}
+
+/* nav */
+.bar{
+  position:fixed;top:0;inset-inline:0;z-index:80;
+  height:64px;
+  display:flex;align-items:center;
+  background:linear-gradient(to bottom, rgba(7,9,11,.88), rgba(7,9,11,.35) 70%, transparent);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.bar .wrap{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;
+}
+.bar__name{
+  font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:-.02em;
+}
+.bar__nav{display:flex;gap:clamp(.8rem,2vw,1.8rem);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+.bar__nav a{text-decoration:none;color:var(--paper);opacity:.72;transition:opacity .2s}
+.bar__nav a:hover{opacity:1}
+.langbtn{
+  font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.18em;
+  background:transparent;color:var(--paper);
+  border:1px solid rgba(243,235,221,.35);
+  padding:.45rem .9rem;cursor:pointer;
+  transition:background .2s,border-color .2s,color .2s;
+}
+.langbtn:hover{background:var(--rose);border-color:var(--rose);color:#fff}
+.langbtn:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+
+.rules{
+  height:6px;border-top:2px solid currentColor;border-bottom:1px solid currentColor;
+  opacity:.85;margin:0 0 1.25rem;max-width:22rem;
+}
+.rules--wide{max-width:none}
+
+/* hero */
+.hero{
+  min-height:100svh;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  position:relative;
+}
+.hero__copy{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(88px,12vh,120px) var(--gutter) clamp(48px,7vh,72px);
+  position:relative;z-index:2;
+  margin-inline-end:-12vw;
+}
+.hero__folio{
+  display:flex;flex-wrap:wrap;gap:.45rem .9rem;align-items:center;
+  font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brass);margin:0 0 .7rem;
+  animation:rise 1s cubic-bezier(.16,1,.3,1) both;
+}
+.hero__folio span + span::before{
+  content:"·";margin-inline-end:.9rem;color:var(--rose);
+}
+.hero__kicker{
+  font-size:.72rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--rose);margin:0 0 1.15rem;
+  animation:rise 1s cubic-bezier(.16,1,.3,1) .04s both;
+}
+.hero h1{
+  font-weight:900;
+  font-size:clamp(3.8rem, 12vw, 8.2rem);
+  line-height:.82;
+  margin:0 0 1.4rem;
+  text-shadow:0 0 40px rgba(7,9,11,.45);
+  animation:rise 1.15s cubic-bezier(.16,1,.3,1) .08s both;
+}
+.hero h1 span{display:block}
+.hero h1 span:last-child{color:var(--rose)}
+.hero__lead{
+  font-family:var(--display);
+  font-size:clamp(1.35rem, 2.4vw, 1.95rem);
+  font-weight:400;
+  line-height:1.28;
+  max-width:24ch;
+  margin:0 0 1.4rem;
+  color:var(--paper);
+  animation:rise 1.15s cubic-bezier(.16,1,.3,1) .16s both;
+}
+.hero__lead::first-letter{
+  font-weight:900;font-size:3.05em;line-height:.78;
+  float:right;padding-inline-end:.08em;color:var(--rose);
+}
+[dir=ltr] .hero__lead::first-letter{float:left}
+.hero__body{
+  color:var(--mist);font-weight:300;font-size:.92rem;max-width:48ch;margin:0 0 2rem;
+  column-count:2;column-gap:1.35rem;column-rule:1px solid var(--line);
+  animation:rise 1.15s cubic-bezier(.16,1,.3,1) .24s both;
+}
+.hero__meta{
+  display:flex;flex-wrap:wrap;gap:.55rem;
+  animation:rise 1.15s cubic-bezier(.16,1,.3,1) .32s both;
+}
+.hero__meta span{
+  border:1px solid var(--line);
+  padding:.4rem .75rem;
+  font-size:.72rem;font-weight:500;letter-spacing:.08em;
+  color:var(--paper-2);
+}
+.hero__shot{
+  margin:0;position:relative;min-height:100svh;overflow:hidden;
+}
+.hero__shot img{
+  object-fit:cover;object-position:50% 12%;
+  filter:saturate(1.05) contrast(1.06);
+  animation:ken 18s cubic-bezier(.16,1,.3,1) both;
+  transform-origin:60% 20%;
+}
+.hero__shot::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(to right, transparent 25%, rgba(7,9,11,.82) 100%),
+    linear-gradient(to top, rgba(7,9,11,.35), transparent 42%);
+  pointer-events:none;
+}
+[dir=ltr] .hero__shot::after{
+  background:
+    linear-gradient(to left, transparent 25%, rgba(7,9,11,.82) 100%),
+    linear-gradient(to top, rgba(7,9,11,.35), transparent 42%);
+}
+.hero__credit{
+  position:absolute;bottom:1.4rem;inset-inline-start:1.2rem;z-index:2;
+  font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(243,235,221,.55);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+}
+[dir=ltr] .hero__credit{transform:none}
+.scrollcue{
+  position:absolute;bottom:1.6rem;inset-inline-start:var(--gutter);z-index:3;
+  font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mist);
+  display:flex;align-items:center;gap:.7rem;
+  animation:rise 1.2s cubic-bezier(.16,1,.3,1) .5s both;
+}
+.scrollcue i{
+  width:1px;height:42px;background:var(--rose);display:block;
+  transform-origin:top;animation:pulse 1.8s ease-in-out infinite;
+}
+
+/* ticker */
+.ticker{
+  border-block:1px solid var(--line);
+  overflow:hidden;background:var(--ink);
+  padding-block:.85rem;
+  display:flex;align-items:center;gap:1.2rem;
+}
+.ticker__flag{
+  flex:none;margin-inline-start:var(--gutter);
+  font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink);background:var(--rose);padding:.28rem .55rem;white-space:nowrap;
+}
+.ticker__track{
+  display:flex;gap:3.2rem;width:max-content;
+  animation:marquee 28s linear infinite;
+  font-size:.78rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--brass);
+}
+.ticker__track span{white-space:nowrap}
+.ticker__track b{color:var(--rose);font-weight:500}
+
+/* sections */
+.section{
+  padding-block:clamp(56px, 8vw, 100px);
+  background-color:var(--paper);color:var(--ink);position:relative;
+  background-image:repeating-linear-gradient(
+    0deg, transparent, transparent 3px, rgba(28,22,14,.018) 3px, rgba(28,22,14,.018) 4px
+  );
+}
+.section--ink{background:var(--ink);color:var(--paper)}
+.section__head{max-width:28ch;margin-bottom:clamp(32px,5vw,56px);position:relative;z-index:1}
+.eyebrow{
+  font-family:var(--sans);font-size:.72rem;font-weight:600;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:var(--rose);margin:0 0 1rem;
+  display:flex;align-items:center;gap:.85rem;
+}
+.eyebrow::after{
+  content:"";flex:1;height:1px;background:currentColor;opacity:.35;max-width:7rem;
+}
+.section__head h2{
+  font-size:clamp(2.4rem, 5.4vw, 4.4rem);font-weight:900;margin:0 0 .8rem;
+}
+.section__head h2 + p{
+  padding-top:.85rem;border-top:1px solid #D6C9B4;
+}
+.section__head p{margin:0;color:#5C5850;font-size:1.05rem;max-width:38ch}
+.section--ink .section__head p{color:var(--mist)}
+.giant{
+  position:absolute;top:-.15em;inset-inline-end:-.08em;
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(8rem, 28vw, 22rem);line-height:.8;
+  color:transparent;-webkit-text-stroke:1.5px rgba(14,18,22,.14);
+  pointer-events:none;user-select:none;
+}
+
+/* filters + ledger */
+.filters{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:2.2rem}
+.chip{
+  font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.12em;
+  padding:.55rem 1rem;border:1px solid #C9BBA4;background:transparent;
+  color:#5C5850;cursor:pointer;transition:all .2s ease;
+}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.ledger{border-top:1px solid #D6C9B4;position:relative;z-index:1}
+.row{
+  display:grid;grid-template-columns:3.2rem 1fr auto;
+  gap:0 1.3rem;align-items:baseline;
+  padding:1.35rem 0;border-bottom:1px solid #D6C9B4;
+  transition:background .2s;
+  cursor:default;
+}
+.row.is-hidden{display:none}
+.row:hover{background:rgba(226,59,106,.05)}
+.row__num{
+  font-family:var(--display);font-weight:700;font-size:1.15rem;
+  color:#B7A790;letter-spacing:-.03em;
+}
+.row--flag .row__num{color:var(--rose)}
+.row__title{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(1.25rem, 2.2vw, 1.7rem);
+  letter-spacing:-.02em;margin:0 0 .2rem;line-height:1.2;
+}
+.row--flag .row__title{font-weight:900}
+.row__note{margin:0;color:#6E675C;font-size:.9rem}
+.row__side{display:flex;align-items:center;gap:1rem;white-space:nowrap}
+.row__year{font-size:.78rem;font-weight:500;letter-spacing:.06em;font-variant-numeric:tabular-nums;color:#8A8173}
+.row__tag{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--rose-deep)}
+.ledger__foot{
+  margin-top:1.5rem;font-size:.72rem;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:#8A8173;
+  display:flex;align-items:center;gap:.55rem;
+}
+.ledger__foot i{width:8px;height:8px;border-radius:50%;background:var(--rose);display:inline-block}
+
+/* moment */
+.moment{
+  display:grid;grid-template-columns:1.15fr .85fr;
+  min-height:85vh;background:var(--ink);position:relative;overflow:hidden;
+}
+.moment__shot{margin:0;min-height:85vh;position:relative;overflow:hidden}
+.moment__shot img{
+  width:100%;height:100%;object-fit:cover;filter:grayscale(.35) contrast(1.12);
+  transform:scale(1.06);
+}
+.moment__shot::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to left, rgba(7,9,11,.75), transparent 55%);
+}
+[dir=ltr] .moment__shot::after{
+  background:linear-gradient(to right, rgba(7,9,11,.75), transparent 55%);
+}
+.moment__quote{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(40px, 7vw, 88px) var(--gutter);
+  position:relative;z-index:2;
+  margin-inline-start:-12vw;
+}
+.moment__quote::before{
+  content:"״";
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(6rem, 14vw, 11rem);line-height:.6;
+  color:var(--rose);display:block;margin-bottom:.4rem;
+  opacity:.9;
+}
+[dir=ltr] .moment__quote::before{content:"“"}
+.moment blockquote{
+  margin:0;
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(1.8rem, 4.2vw, 3.3rem);
+  line-height:1.12;letter-spacing:-.03em;
+}
+.moment__src{
+  margin:1.6rem 0 0;font-size:.74rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--mist);
+}
+
+/* gallery */
+.gallery{overflow:hidden}
+.gallery__grid{
+  display:grid;grid-template-columns:repeat(12,1fr);
+  gap:clamp(12px, 1.6vw, 22px);
+}
+.shot{margin:0;position:relative;overflow:hidden;background:#111}
+.shot img{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(.92) contrast(1.04);
+  transition:transform 1.1s cubic-bezier(.16,1,.3,1), filter .4s;
+}
+.shot:hover img{transform:scale(1.06);filter:saturate(1.05) contrast(1.08)}
+.shot figcaption, .shot cite{
+  position:absolute;inset-inline:0;bottom:0;
+  padding:2.4rem .9rem .8rem;
+  background:linear-gradient(to top, rgba(7,9,11,.85), transparent);
+  color:var(--paper);font-size:.82rem;font-style:normal;
+  letter-spacing:.02em;transform:translateY(6px);opacity:.95;
+}
+.shot cite{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+.shot--hero{grid-column:span 8;grid-row:span 2}
+.shot--hero img{aspect-ratio:3/2;min-height:52vh;object-fit:cover}
+.shot--tall{grid-column:span 4}
+.shot--tall img{aspect-ratio:3/4;height:100%}
+.shot--mid{grid-column:span 4}
+.shot--mid img{aspect-ratio:4/5}
+.shot--wide{grid-column:span 8}
+.shot--wide img{aspect-ratio:16/7}
+
+/* roles */
+.role{
+  display:grid;grid-template-columns:minmax(140px, .28fr) 1fr;
+  gap:0 clamp(24px, 4vw, 64px);
+  padding:2.4rem 0;border-bottom:1px solid var(--line);
+  align-items:start;
+}
+.role:first-child{border-top:1px solid var(--line)}
+.role__years{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(1.4rem, 2.4vw, 2rem);
+  letter-spacing:-.03em;color:var(--rose);padding-top:.15rem;
+}
+.role h3{font-size:clamp(1.5rem, 2.6vw, 2.1rem);font-weight:900;margin-bottom:.25rem}
+.role__org{color:var(--brass);font-size:.95rem;font-weight:500;margin:0 0 1rem;letter-spacing:.04em}
+.role ul{margin:0;padding-inline-start:1.1rem;color:var(--mist);font-size:.98rem}
+.role li{margin-bottom:.4rem}
+
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#D6C9B4;border:1px solid #D6C9B4}
+.card{background:var(--paper);padding:clamp(22px, 2.6vw, 34px)}
+.card h3{font-size:1.35rem;font-weight:900;margin-bottom:1.1rem}
+.card dl{margin:0}
+.card dt{font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);margin-top:1.05rem}
+.card dt:first-child{margin-top:0}
+.card dd{margin:.25rem 0 0;font-size:.95rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
+.tag{border:1px solid #C9BBA4;padding:.32rem .65rem;font-size:.8rem;color:#4A463E}
+
+/* contact */
+.contact{
+  background:var(--ink);color:var(--paper);
+  padding-block:clamp(80px, 12vw, 140px);
+  position:relative;overflow:hidden;
+}
+.contact::before{
+  content:"NAAMA";
+  position:absolute;bottom:-.22em;inset-inline-start:-.05em;
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(6rem, 22vw, 18rem);line-height:.8;
+  color:transparent;-webkit-text-stroke:1px rgba(243,235,221,.07);
+  pointer-events:none;
+}
+.contact h2{
+  font-size:clamp(3rem, 8vw, 6.5rem);font-weight:900;
+  letter-spacing:-.04em;margin:0 0 1rem;line-height:.9;
+}
+.contact p{color:var(--mist);max-width:36ch;margin:0 0 2.6rem;font-weight:300;font-size:1.08rem}
+.mail{
+  font-family:var(--display);font-size:clamp(1.5rem, 4vw, 2.8rem);
+  font-weight:700;text-decoration:none;
+  border-bottom:2px solid var(--rose);padding-bottom:.12rem;
+  display:inline-block;direction:ltr;transition:color .2s;
+}
+.mail:hover{color:var(--rose)}
+.social{display:flex;flex-wrap:wrap;gap:1.8rem;margin-top:2.8rem;font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;position:relative}
+.social a{color:var(--mist);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:3px;transition:color .2s,border-color .2s}
+.social a:hover{color:var(--paper);border-color:var(--rose)}
+footer{
+  background:var(--ink);color:#5A6360;font-size:.68rem;letter-spacing:.1em;
+  padding-block:1.4rem 2rem;border-top:1px solid var(--line);
+}
+
+/* motion */
+@keyframes rise{
+  from{opacity:0;transform:translateY(28px)}
+  to{opacity:1;transform:none}
+}
+@keyframes ken{
+  from{transform:scale(1.14)}
+  to{transform:scale(1)}
+}
+@keyframes pulse{
+  0%,100%{transform:scaleY(.35);opacity:.4}
+  50%{transform:scaleY(1);opacity:1}
+}
+@keyframes marquee{
+  from{transform:translateX(0)}
+  to{transform:translateX(50%)}
+}
+[dir=ltr] .ticker__track{animation-name:marquee-ltr}
+@keyframes marquee-ltr{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+.reveal.is-in{animation:rise .85s cubic-bezier(.16,1,.3,1) both}
+
+@media (max-width:900px){
+  .bar__nav{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero__shot{min-height:62vh;order:-1}
+  .hero__shot::after{
+    background:linear-gradient(to top, rgba(7,9,11,.92) 0%, transparent 48%);
+  }
+  .hero__copy{padding-top:1.5rem;padding-bottom:4.5rem;margin-inline-end:0}
+  .hero h1{font-size:clamp(3.4rem, 18vw, 5.5rem)}
+  .hero__body{column-count:1;column-rule:none}
+  .hero__lead::first-letter{font-size:2.2em}
+  .ticker__flag{display:none}
+  .scrollcue{bottom:1rem}
+  .moment{grid-template-columns:1fr;min-height:auto}
+  .moment__shot{min-height:48vh}
+  .moment__shot::after{background:linear-gradient(to top, rgba(7,9,11,.9), transparent 50%)}
+  .moment__quote{margin:0;padding-top:0;min-height:auto;padding-bottom:4rem}
+  .gallery__grid{grid-template-columns:1fr}
+  .shot--hero,.shot--tall,.shot--mid,.shot--wide{grid-column:span 1}
+  .shot--hero img{min-height:0;aspect-ratio:4/3}
+  .facts{grid-template-columns:1fr}
+  .role{grid-template-columns:1fr;gap:.4rem;padding:1.6rem 0}
+  .row{grid-template-columns:2.4rem 1fr;gap:0 .8rem}
+  .row__side{grid-column:2;margin-top:.45rem}
+  .giant{opacity:.6}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .row,.reveal,.hero__copy > *,.hero__shot img{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div id="progress"></div>
+
+<header class="bar">
+  <div class="wrap">
+    <a href="#top" class="bar__name" data-en="Naama Cohen">נעמה כהן</a>
+    <nav class="bar__nav" aria-label="ניווט ראשי">
+      <a href="#record" data-en="Work">יוזמות</a>
+      <a href="#field" data-en="Field">בשטח</a>
+      <a href="#roles-sec" data-en="Roles">תפקידים</a>
+      <a href="#contact" data-en="Contact">קשר</a>
+    </nav>
+    <button class="langbtn" id="langbtn" type="button">ENGLISH</button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero__copy">
+    <p class="hero__folio">
+      <span data-en="Tel Aviv">תל אביב</span>
+      <span data-en="Saturday, 15 August 2026">שבת, 15 באוגוסט 2026</span>
+      <span data-en="Vol. I · No. 01">כרך א׳ · גיליון 01</span>
+    </p>
+    <div class="rules" aria-hidden="true"></div>
+    <p class="hero__kicker" data-en="Special edition · CEO · Strategy · Government Relations">מהדורה מיוחדת · מנכ״לית · אסטרטגיה · קשרי ממשל</p>
+    <h1 data-en="<span>Naama</span><span>Cohen</span>"><span>נעמה</span><span>כהן</span></h1>
+    <p class="hero__lead" data-en="I lead organizations and campaigns that change policy — from the working conditions of Israel's medical residents to legislation in the Knesset.">
+      מובילה ארגונים וקמפיינים שמשנים מדיניות — מתנאי ההעסקה של הרופאות והרופאים המתמחים ועד לחקיקה בכנסת.
+    </p>
+    <p class="hero__body" data-en="Executive and strategist with a proven record in leading organizations, managing complex government relations and shaping public policy. Specializing in national public campaigns and grassroots mobilization, budget management, and crisis management in a dynamic political environment.">
+      מנכ״לית ואשת אסטרטגיה בעלת ניסיון עשיר והישגים מוכחים בהובלת ארגונים, ניהול קשרי ממשל מורכבים ועיצוב מדיניות ציבורית. מומחית בהובלת קמפיינים ציבוריים וגיוס המונים בקנה מידה רחב, ניהול תקציבים וניהול משברים בסביבה פוליטית וציבורית דינמית.
+    </p>
+    <div class="hero__meta">
+      <span data-en="Mirsham — Israeli Medical Residents' Organization">מרשם — ארגון המתמחים לרפואה</span>
+      <span data-en="M.A. Reichman University">M.A. אוניברסיטת רייכמן</span>
+      <span data-en="Certified Director">תעודת דירקטורית</span>
+    </div>
+  </div>
+  <figure class="hero__shot">
+    <img src="img/portrait.jpg" alt="נעמה כהן" width="1200" height="1600">
+    <span class="hero__credit" data-en="Tel Aviv · 2026">תל אביב · 2026</span>
+  </figure>
+  <p class="scrollcue"><i></i><span data-en="Scroll">גלול</span></p>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <span class="ticker__flag" data-en="Late edition">מהדורה מאוחרת</span>
+  <div class="ticker__track" id="ticker">
+    <span>מנכ״לית</span><span>אסטרטגיה</span><span>קשרי ממשל</span><span>חקיקה</span>
+    <span><b>קמפיינים</b></span><span>גיוס המונים</span><span>ניהול משברים</span><span>לובינג</span>
+    <span>מנכ״לית</span><span>אסטרטגיה</span><span>קשרי ממשל</span><span>חקיקה</span>
+    <span><b>קמפיינים</b></span><span>גיוס המונים</span><span>ניהול משברים</span><span>לובינג</span>
+  </div>
+</div>
+
+<main>
+<section class="section" id="record">
+  <div class="wrap" style="position:relative">
+    <div class="giant" aria-hidden="true">17</div>
+    <div class="section__head reveal">
+      <p class="eyebrow" data-en="The record">התיק</p>
+      <h2 data-en="Seventeen initiatives, laws and reforms">שבע־עשרה יוזמות, חוקים ורפורמות</h2>
+      <p data-en="Campaigns I initiated, led or took part in. Filter by field.">קמפיינים ומאבקים שיזמתי, הובלתי או לקחתי בהם חלק. אפשר לסנן לפי תחום.</p>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="ledger" id="ledger"></div>
+    <p class="ledger__foot"><i></i><span data-en="Flagship initiatives">יוזמות דגל</span></p>
+  </div>
+</section>
+
+<section class="moment">
+  <figure class="moment__shot">
+    <img src="img/committee.jpg" alt="נעמה כהן בדיון ועדה" loading="lazy">
+  </figure>
+  <div class="moment__quote">
+    <blockquote data-en="No one should have to work more than 26 hours straight.">לא צריכים לעבוד יותר מ־26 שעות ברצף.</blockquote>
+    <p class="moment__src" data-en="From the campaign to shorten residents' on-call shifts">מתוך הקמפיין לקיצור תורנויות המתמחים</p>
+  </div>
+</section>
+
+<section class="section gallery" id="field">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <p class="eyebrow" data-en="In the field">בשטח</p>
+      <h2 data-en="The women's protest for the hostages">מחאת הנשים להחזרת החטופות והחטופים</h2>
+      <p data-en="Organizing, logistics and standing on the road — from the first weeks to today.">ארגון, לוגיסטיקה ועמידה על הכביש — מהשבועות הראשונים ועד היום.</p>
+    </div>
+    <div class="gallery__grid">
+      <figure class="shot shot--hero reveal">
+        <img src="img/protest-sign.jpg" alt="״לא עוצרות עד שכולם וכולן חוזרות״" loading="lazy">
+        <figcaption data-en="“We don’t stop until every one of them is home”">״לא עוצרות עד שכולם וכולן חוזרות״</figcaption>
+      </figure>
+      <figure class="shot shot--tall reveal">
+        <img src="img/march-kirya.jpg" alt="צעדת המחאה סביב הקריה, תל אביב" loading="lazy">
+        <figcaption data-en="The protest march around the Kirya, Tel Aviv">צעדת המחאה סביב הקריה, תל אביב</figcaption>
+      </figure>
+      <figure class="shot shot--mid reveal">
+        <img src="img/gadi-moses.jpg" alt="סגירת מעגל עם גדי מוזס" loading="lazy">
+        <figcaption data-en="Closing a circle with Gadi Moses">סגירת מעגל עם גדי מוזס</figcaption>
+      </figure>
+      <figure class="shot shot--mid reveal">
+        <img src="img/ayalon-block.jpg" alt="חסימת נתיבי איילון" loading="lazy">
+        <figcaption data-en="Blocking the Ayalon highway">חסימת נתיבי איילון</figcaption>
+      </figure>
+      <figure class="shot shot--wide reveal">
+        <img src="img/spokesperson-circle.jpg" alt="הובלת מעגל דוברות בהפגנה" loading="lazy">
+        <cite data-en="Photo: Tomer Appelbaum">צילום: תומר אפלבאום</cite>
+      </figure>
+      <figure class="shot shot--mid reveal">
+        <img src="img/knesset-channel.jpg" alt="ריאיון בערוץ הכנסת" loading="lazy">
+        <figcaption data-en="Interviewed on the Knesset Channel">ריאיון בערוץ הכנסת</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section section--ink" id="roles-sec">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <p class="eyebrow" data-en="Experience">ניסיון</p>
+      <h2 data-en="Roles">תפקידים</h2>
+    </div>
+    <div id="roles"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <p class="eyebrow" data-en="Background">רקע</p>
+      <h2 data-en="Education, skills, volunteering">השכלה, כישורים והתנדבות</h2>
+    </div>
+    <div class="facts reveal">
+      <div class="card">
+        <h3 data-en="Education">השכלה</h3>
+        <dl>
+          <dt>2021–2022</dt>
+          <dd data-en="M.A. with honors — Government, Public Policy &amp; Political Marketing, Reichman University">M.A. בהצטיינות — ממשל, מדיניות ציבורית ושיווק פוליטי, אוניברסיטת רייכמן</dd>
+          <dt>2016–2019</dt>
+          <dd data-en="B.A. — Politics &amp; Government and Communications, Ben-Gurion University">B.A. — פוליטיקה וממשל ותקשורת, אוניברסיטת בן גוריון</dd>
+          <dt>2024</dt>
+          <dd data-en="Certified Director — Hebrew University">תעודת דירקטורית — האוניברסיטה העברית</dd>
+          <dt>2012–2014</dt>
+          <dd data-en="Israeli Air Force — full service">שירות מלא, חיל האוויר</dd>
+        </dl>
+      </div>
+      <div class="card">
+        <h3 data-en="Skills &amp; languages">כישורים ושפות</h3>
+        <div class="tags">
+          <span class="tag" data-en="Strategy &amp; lobbying">אסטרטגיה ולובינג</span>
+          <span class="tag" data-en="Organizational management">ניהול ארגוני</span>
+          <span class="tag" data-en="Government relations">קשרי ממשל</span>
+          <span class="tag" data-en="Grassroots mobilization">גיוס המונים</span>
+          <span class="tag" data-en="Campaign management">ניהול קמפיינים</span>
+          <span class="tag" data-en="Event production">הפקת אירועים</span>
+          <span class="tag" data-en="New media">ניו־מדיה</span>
+          <span class="tag" data-en="Content writing">כתיבת תוכן</span>
+        </div>
+        <dl>
+          <dt data-en="Languages">שפות</dt>
+          <dd data-en="Hebrew — native · English — advanced · Spanish — advanced">עברית — שפת אם · אנגלית — גבוהה · ספרדית — גבוהה</dd>
+        </dl>
+      </div>
+      <div class="card">
+        <h3 data-en="Volunteering">התנדבות</h3>
+        <dl>
+          <dt data-en="&quot;15 Minutes&quot; — public transport advocacy">״15 דקות״ לקידום התחבורה הציבורית</dt>
+          <dd data-en="Audit committee member — financial oversight and advisory to the CEO">חברת ועדת ביקורת — פיקוח על הדו״ח הכספי וייעוץ למנכ״לית</dd>
+          <dt data-en="&quot;Mafginot Nokhachot&quot;">״מפגינות נוכחות״</dt>
+          <dd data-en="Training volunteers on active participation in the Knesset">הדרכת מתנדבים בהשתתפות פעילה בכנסת</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="eyebrow" data-en="Get in touch">יצירת קשר</p>
+    <h2 data-en="Let's talk.">בואו נדבר.</h2>
+    <p data-en="Open to board positions, executive roles, strategic consulting and speaking engagements.">פתוחה לתפקידי ניהול ודירקטוריון, ייעוץ אסטרטגי, הרצאות ופאנלים.</p>
+    <a class="mail" href="mailto:naamaco04@gmail.com">naamaco04@gmail.com</a>
+    <div class="social">
+      <a href="#" id="li">LinkedIn</a>
+      <a href="https://www.instagram.com/naamaco1" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/naama.cohen.31" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><span data-en="© 2026 Naama Cohen">© 2026 נעמה כהן</span></div>
+</footer>
+
+<script>
+const DOMAINS = {
+  health: {he:"בריאות",              en:"Health"},
+  law:    {he:"חקיקה ומדיניות",       en:"Legislation & policy"},
+  street: {he:"מחאה וארגון",          en:"Protest & organizing"},
+  pol:    {he:"פוליטיקה",             en:"Politics"},
+  prod:   {he:"הפקות ואירועים",       en:"Events & production"}
+};
+
+const RECORD = [
+  {d:"health", y:"2023", flag:true,
+   he:["קיצור תורנויות המתמחים","רפורמה בתנאי ההעסקה של הרופאות והרופאים המתמחים"],
+   en:["Shortening residents' on-call shifts","Reform of employment terms for medical residents"]},
+  {d:"law", flag:true,
+   he:["הכנסת מרכזי החוסן לבסיס תקציב המדינה","תקצוב קבוע ומעוגן למרכזי החוסן"],
+   en:["Resilience centers into the state budget base","Permanent, anchored funding for resilience centers"]},
+  {d:"law", flag:true,
+   he:["הפסקת גידול תרנגולות בלולי כלובים","רפורמה בענף ההטלה ורווחת בעלי חיים"],
+   en:["Ending battery-cage egg production","Reform of the laying industry and animal welfare"]},
+  {d:"street", flag:true,
+   he:["מחאת הנשים להחזרת החטופות והחטופים","ממובילות המחאה"],
+   en:["The women's protest for the return of the hostages","Among the leaders of the movement"]},
+  {d:"law", y:"2021",
+   he:["הצעת חוק צעירים חסרי עורף משפחתי","הכנסת ה־24 · עברה קריאה טרומית"],
+   en:["Bill for young people without family support","24th Knesset · passed preliminary reading"]},
+  {d:"health",
+   he:["מאבק בקיצוץ תקני הרופאות והרופאים בקורונה",""],
+   en:["Fighting cuts to physician staffing during COVID-19",""]},
+  {d:"health",
+   he:["מאבק בביטול הארכת חופשת הלידה לנשים במקצועות מיוחדים",""],
+   en:["Fighting the repeal of extended maternity leave in specialized professions",""]},
+  {d:"health",
+   he:["סיוע נפשי לצוותים רפואיים","במהלך מלחמת חרבות ברזל"],
+   en:["Mental health support for medical teams","During the Iron Swords war"]},
+  {d:"health",
+   he:["תזכיר חוק למניעת אלימות במוסדות למתן טיפול",""],
+   en:["Draft bill to prevent violence in care institutions",""]},
+  {d:"law",
+   he:["מאבק בחוק גירוש הפליטים",""],
+   en:["Fighting the refugee deportation law",""]},
+  {d:"law",
+   he:["הקמת שדולת המוסיקה הישראלית",""],
+   en:["Founding the Israeli Music Lobby",""]},
+  {d:"law", y:"2018",
+   he:["נתב״ג 2 בנבטים","המאבק בהקמת נמל תעופה משלים ברמת דוד"],
+   en:["Ben Gurion 2 at Nevatim","Opposing a supplementary airport at Ramat David"]},
+  {d:"law", y:"2025, 2026",
+   he:["מניעת סגירת גני ילדים במרכז תל אביב",""],
+   en:["Preventing the closure of kindergartens in central Tel Aviv",""]},
+  {d:"street",
+   he:["הקמת ״צעדת את לא אשמה״ באר שבע",""],
+   en:["Founding the \"It's Not Your Fault\" march, Be'er Sheva",""]},
+  {d:"pol", y:"2019",
+   he:["הפקות במפלגת העבודה",""],
+   en:["Event production, Labor Party",""]},
+  {d:"prod", y:"2016",
+   he:["אירוע הסליחות הגדול בירושלים","הפקה מטעם מטה ראש העיר ניר ברקת"],
+   en:["Jerusalem's largest Selichot event","Produced for Mayor Nir Barkat's headquarters"]},
+  {d:"prod", y:"2025",
+   he:["120 שנה לגימנסיה העברית הרצליה","הובלת אירוע הבוגרות והבוגרים"],
+   en:["120 years of the Herzliya Hebrew Gymnasium","Leading the alumni event"]}
+];
+
+const ROLES = [
+  {yEn:"2020 – present", yHe:"2020 – היום",
+   he:{t:"מנכ״לית", o:"מרשם — ארגון המתמחים לרפואה", b:[
+     "ניהול אסטרטגי ותפעולי של הארגון המוביל את מאבק הרופאות והרופאים המתמחים בישראל, תוך הובלת שינוי היסטורי בתנאי ההעסקה ובמבנה התורנויות.",
+     "קשרי ממשל ולובינג מול דרגים בכירים במשרדי הבריאות, האוצר והכלכלה, בכנסת ובגופים רגולטוריים.",
+     "ניהול והנחיית עובדי הארגון, עבודה שוטפת מול הוועד המנהל והתוויית מדיניות ארוכת טווח.",
+     "פיקוח על תקציבי הארגון, כולל ייזום והובלת קמפיינים ארציים של גיוס המונים.",
+     "ניהול והנחיית יועצים חיצוניים — משפטיים, תקשורתיים ואסטרטגיים — וספקים."]},
+   en:{t:"Chief Executive Officer", o:"Mirsham — Israeli Medical Residents' Organization", b:[
+     "Full strategic and operational leadership of the organization driving Israel's medical residents' campaign, delivering historic change in employment terms and shift structure.",
+     "Government relations and lobbying with senior officials across the Ministries of Health, Finance and Economy, the Knesset and regulatory bodies.",
+     "Managing staff, working with the board, and setting long-term policy.",
+     "Budget oversight, including initiating and leading national grassroots fundraising campaigns.",
+     "Recruiting and directing external legal, communications and strategy advisors."]}},
+  {yEn:"2021 – 2022", yHe:"2021 – 2022",
+   he:{t:"יועצת אסטרטגיה, קשרי ממשל ולובינג", o:"אימפקט", b:[
+     "ניהול תיקי לקוחות מובילים מהמגזר העסקי והחברתי וייצוג האינטרסים שלהם מול מקבלי החלטות.",
+     "גיבוש אסטרטגיות רגולטוריות, כתיבת ניירות עמדה ומיפוי פוליטי וציבורי.",
+     "קידום חקיקה, תקצוב ושינוי תקנות."]},
+   en:{t:"Strategy, Government Relations & Lobbying Consultant", o:"Impact", b:[
+     "Managing leading business and social-sector client portfolios and representing their interests before decision-makers.",
+     "Building regulatory strategies, writing position papers, and political and public mapping.",
+     "Advancing legislation, budgets and regulatory change."]}},
+  {yEn:"2018 – 2019", yHe:"2018 – 2019",
+   he:{t:"מפיקת שטח", o:"קמפיין בחירות, מפלגת העבודה", b:[
+     "ניהול והפקה של מערך אירועי השטח וכנסי המועמדים ברמה הארצית, מהתכנון ועד לביצוע.",
+     "משא ומתן, התקשרויות ובקרת תקציבים מול ספקי מדיה, הפקה ולוגיסטיקה.",
+     "כתיבת תכנים שיווקיים ופוליטיים ותיאום מערך הפרסום והדוברות."]},
+   en:{t:"Field Production Manager", o:"Election campaign, Labor Party", b:[
+     "Managing and producing the national field-event and candidate-conference operation, from planning to execution.",
+     "Negotiation, contracting and budget control with media, production and logistics vendors.",
+     "Writing marketing and political content and coordinating advertising and spokesperson operations."]}},
+  {yEn:"2017 – 2018", yHe:"2017 – 2018",
+   he:{t:"רכזת תקשורת, ניו־מדיה ולובי", o:"מועצת הנגב", b:[
+     "ניהול מערך הדוברות והקשר השוטף מול כלי התקשורת הארציים והמקומיים.",
+     "ייזום שיתופי פעולה וקואליציות בין רשויות מקומיות וארגוני חברה אזרחית.",
+     "ניהול, יצירת תוכן ופיתוח הערוצים הדיגיטליים של המועצה."]},
+   en:{t:"Communications, New Media & Lobbying Coordinator", o:"The Negev Council", b:[
+     "Running spokesperson operations and day-to-day relations with national and local media.",
+     "Initiating strategic partnerships and coalitions between local authorities and civil-society organizations.",
+     "Managing, creating content for and developing the council's digital channels."]}},
+  {yEn:"2016", yHe:"2016",
+   he:{t:"מנהלת משרד", o:"מטה ניר ברקת", b:[
+     "ניהול אדמיניסטרטיבי, לוגיסטי ותפעולי של המטה, כולל יומן מורכב ותיאום סיורים.",
+     "הקמה ותפעול של מערך רישום, קליטה וגיוס שהביא להצטרפותם של אלפי פעילים חדשים."]},
+   en:{t:"Office Manager", o:"Nir Barkat headquarters", b:[
+     "Administrative, logistical and operational management of the headquarters, including a complex calendar and tour coordination.",
+     "Building and running a registration and recruitment operation that brought in thousands of new activists."]}}
+];
+
+const TICKER = {
+  he:["מנכ״לית","אסטרטגיה","קשרי ממשל","חקיקה","קמפיינים","גיוס המונים","ניהול משברים","לובינג"],
+  en:["CEO","Strategy","Government relations","Legislation","Campaigns","Grassroots","Crisis management","Lobbying"]
+};
+
+let lang = "he";
+let filter = "all";
+
+function renderTicker(){
+  const words = TICKER[lang];
+  const item = (w,i) => `<span${i===4?' class="is-accent"':''}>${w}</span>`;
+  const seq = words.map(item).join("");
+  document.getElementById("ticker").innerHTML = seq + seq;
+  document.querySelectorAll("#ticker span").forEach((s,i)=>{
+    if(i%8===4) s.style.color = "var(--rose)";
+  });
+}
+
+function renderFilters(){
+  const f = document.getElementById("filters");
+  const all = lang==="he" ? "הכול" : "All";
+  let html = `<button class="chip" data-f="all" aria-pressed="${filter==="all"}">${all}</button>`;
+  for(const k in DOMAINS){
+    html += `<button class="chip" data-f="${k}" aria-pressed="${filter===k}">${DOMAINS[k][lang]}</button>`;
+  }
+  f.innerHTML = html;
+  f.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{
+    filter = c.dataset.f; renderFilters(); renderLedger();
+  }));
+}
+
+function renderLedger(){
+  const el = document.getElementById("ledger");
+  const visible = RECORD.map((r,i)=>({r,i})).filter(({r})=>filter==="all"||filter===r.d);
+  el.innerHTML = visible.map(({r,i})=>{
+    const [title,note] = r[lang];
+    const n = String(i+1).padStart(2,"0");
+    return `<article class="row${r.flag?" row--flag":""}">
+      <span class="row__num">${n}</span>
+      <div>
+        <h3 class="row__title">${title}</h3>
+        ${note?`<p class="row__note">${note}</p>`:""}
+      </div>
+      <div class="row__side">
+        ${r.y?`<span class="row__year" dir="ltr">${r.y}</span>`:""}
+        <span class="row__tag">${DOMAINS[r.d][lang]}</span>
+      </div>
+    </article>`;
+  }).join("");
+  observe(".row");
+}
+
+function renderRoles(){
+  const el = document.getElementById("roles");
+  el.innerHTML = ROLES.map(r=>{
+    const c = r[lang];
+    const years = lang==="he" ? r.yHe : r.yEn;
+    return `<article class="role reveal">
+      <div class="role__years" dir="ltr">${years}</div>
+      <div>
+        <h3>${c.t}</h3>
+        <p class="role__org">${c.o}</p>
+        <ul>${c.b.map(b=>`<li>${b}</li>`).join("")}</ul>
+      </div>
+    </article>`;
+  }).join("");
+  observe(".reveal");
+}
+
+let io;
+function observe(sel){
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const nodes = [...document.querySelectorAll(sel)];
+  if(reduce){ nodes.forEach(n=>n.classList.add("is-in")); return; }
+  if(!io){
+    io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add("is-in");
+          io.unobserve(e.target);
+        }
+      });
+    },{rootMargin:"0px 0px -6% 0px", threshold:.02});
+  }
+  nodes.forEach(n=>{
+    const r = n.getBoundingClientRect();
+    if(r.top < innerHeight * 0.94 && r.bottom > 0) n.classList.add("is-in");
+    else io.observe(n);
+  });
+}
+
+const progress = document.getElementById("progress");
+window.addEventListener("scroll", ()=>{
+  const h = document.documentElement;
+  const p = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight);
+  progress.style.transform = `scaleX(${p})`;
+}, {passive:true});
+
+document.getElementById("langbtn").addEventListener("click",()=>{
+  lang = lang==="he" ? "en" : "he";
+  const isHe = lang==="he";
+  document.documentElement.lang = isHe ? "he" : "en";
+  document.documentElement.dir  = isHe ? "rtl" : "ltr";
+  document.getElementById("langbtn").textContent = isHe ? "ENGLISH" : "עברית";
+  document.querySelectorAll("[data-en]").forEach(n=>{
+    if(!n.dataset.he) n.dataset.he = n.innerHTML;
+    n.innerHTML = isHe ? n.dataset.he : n.dataset.en;
+  });
+  renderTicker(); renderFilters(); renderLedger(); renderRoles();
+});
+
+renderTicker(); renderFilters(); renderLedger(); renderRoles();
+observe(".reveal");
+</script>
+</body>
+</html>
