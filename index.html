@@ -26,7 +26,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -47,8 +46,6 @@
 
     <section class="hero" id="top">
       <div class="hero__copy">
-        <p class="hero__folio" id="hero-folio"></p>
-        <div class="rules" aria-hidden="true"></div>
         <p class="hero__kicker" data-bind="kicker">
           מנכ״לית · אסטרטגיה · קשרי ממשל
         </p>
@@ -96,9 +93,7 @@
         <div class="wrap" style="position: relative">
           <div class="giant" aria-hidden="true">17</div>
           <div class="section__head reveal">
-            <h2 data-bind="record-title">
-              שבע־עשרה יוזמות, חוקים ורפורמות
-            </h2>
+            <h2 data-bind="record-title">שבע־עשרה יוזמות, חוקים ורפורמות</h2>
             <p data-bind="record-intro">
               קמפיינים ומאבקים שיזמתי, הובלתי או לקחתי בהם חלק. אפשר לסנן לפי
               תחום.
@@ -134,9 +129,7 @@
         <div class="wrap">
           <div class="section__head reveal">
             <p class="eyebrow" data-bind="field-eyebrow">בשטח</p>
-            <h2 data-bind="field-title">
-              מחאת הנשים להחזרת החטופות והחטופים
-            </h2>
+            <h2 data-bind="field-title">מחאת הנשים להחזרת החטופות והחטופים</h2>
             <p data-bind="field-intro">
               ארגון, לוגיסטיקה ועמידה על הכביש — מהשבועות הראשונים ועד היום.
             </p>
@@ -308,8 +301,20 @@
         >
         <div class="social">
           <a href="#" id="li">LinkedIn</a>
-          <a href="https://www.instagram.com/naamaco1" id="ig" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://www.facebook.com/naama.cohen.31" id="fb" target="_blank" rel="noopener">Facebook</a>
+          <a
+            href="https://www.instagram.com/naamaco1"
+            id="ig"
+            target="_blank"
+            rel="noopener"
+            >Instagram</a
+          >
+          <a
+            href="https://www.facebook.com/naama.cohen.31"
+            id="fb"
+            target="_blank"
+            rel="noopener"
+            >Facebook</a
+          >
         </div>
       </div>
     </section>
@@ -321,145 +326,150 @@
     </footer>
 
     <script>
-let CONTENT = null;
-let lang = "he";
-let filter = "all";
-let io;
+      let CONTENT = null;
+      let lang = "he";
+      let filter = "all";
+      let io;
 
-const $ = (sel) => document.querySelector(sel);
+      const $ = (sel) => document.querySelector(sel);
 
-function t(pair) {
-  if (!pair) return "";
-  return pair[lang] || pair.he || "";
-}
+      function t(pair) {
+        if (!pair) return "";
+        return pair[lang] || pair.he || "";
+      }
 
-function bind(sel, pair, asHTML) {
-  const el = $(sel);
-  if (!el || !pair) return;
-  el.dataset.he = pair.he || "";
-  el.dataset.en = pair.en || "";
-  if (asHTML) el.innerHTML = t(pair);
-  else el.textContent = t(pair);
-}
+      function bind(sel, pair, asHTML) {
+        const el = $(sel);
+        if (!el || !pair) return;
+        el.dataset.he = pair.he || "";
+        el.dataset.en = pair.en || "";
+        if (asHTML) el.innerHTML = t(pair);
+        else el.textContent = t(pair);
+      }
 
-function applyContent() {
-  const c = CONTENT;
-  document.title = t(c.site.title);
-  const desc = document.querySelector('meta[name="description"]');
-  if (desc) desc.setAttribute("content", t(c.site.description));
+      function applyContent() {
+        const c = CONTENT;
+        document.title = t(c.site.title);
+        const desc = document.querySelector('meta[name="description"]');
+        if (desc) desc.setAttribute("content", t(c.site.description));
 
-  bind("[data-bind=name]", c.site.name);
-  bind("[data-bind=nav-work]", c.nav.work);
-  bind("[data-bind=nav-field]", c.nav.field);
-  bind("[data-bind=nav-roles]", c.nav.roles);
-  bind("[data-bind=nav-contact]", c.nav.contact);
+        bind("[data-bind=name]", c.site.name);
+        bind("[data-bind=nav-work]", c.nav.work);
+        bind("[data-bind=nav-field]", c.nav.field);
+        bind("[data-bind=nav-roles]", c.nav.roles);
+        bind("[data-bind=nav-contact]", c.nav.contact);
 
-  const folio = $("#hero-folio");
-  if (folio) {
-    folio.innerHTML = [c.hero.city, c.hero.date, c.hero.edition]
-      .filter(Boolean)
-      .map((p) => `<span>${t(p)}</span>`)
-      .join("");
-  }
-  bind("[data-bind=kicker]", c.hero.kicker);
-  bind("[data-bind=first]", c.hero.first);
-  bind("[data-bind=last]", c.hero.last);
-  bind("[data-bind=lead]", c.hero.lead);
-  bind("[data-bind=body]", c.hero.body);
-  bind("[data-bind=credit]", c.hero.credit);
+        const folio = $("#hero-folio");
+        if (folio) {
+          folio.innerHTML = [c.hero.city, c.hero.date, c.hero.edition]
+            .filter(Boolean)
+            .map((p) => `<span>${t(p)}</span>`)
+            .join("");
+        }
+        bind("[data-bind=kicker]", c.hero.kicker);
+        bind("[data-bind=first]", c.hero.first);
+        bind("[data-bind=last]", c.hero.last);
+        bind("[data-bind=lead]", c.hero.lead);
+        bind("[data-bind=body]", c.hero.body);
+        bind("[data-bind=credit]", c.hero.credit);
 
-  const meta = $("#hero-meta");
-  if (meta) {
-    meta.innerHTML = c.hero.meta.map((m) => `<span>${t(m)}</span>`).join("");
-  }
+        const meta = $("#hero-meta");
+        if (meta) {
+          meta.innerHTML = c.hero.meta
+            .map((m) => `<span>${t(m)}</span>`)
+            .join("");
+        }
 
-  bind("[data-bind=record-title]", c.record.title);
-  bind("[data-bind=record-intro]", c.record.intro);
-  bind("[data-bind=flagship]", c.record.flagship);
-  const giant = $(".giant");
-  if (giant) giant.textContent = String(c.record.items.length);
+        bind("[data-bind=record-title]", c.record.title);
+        bind("[data-bind=record-intro]", c.record.intro);
+        bind("[data-bind=flagship]", c.record.flagship);
+        const giant = $(".giant");
+        if (giant) giant.textContent = String(c.record.items.length);
 
-  bind("[data-bind=quote]", c.quote.text);
-  bind("[data-bind=quote-src]", c.quote.source);
+        bind("[data-bind=quote]", c.quote.text);
+        bind("[data-bind=quote-src]", c.quote.source);
 
-  bind("[data-bind=field-eyebrow]", c.field.eyebrow);
-  bind("[data-bind=field-title]", c.field.title);
-  bind("[data-bind=field-intro]", c.field.intro);
-  document.querySelectorAll("[data-shot]").forEach((el) => {
-    const shot = c.field.shots[Number(el.dataset.shot)];
-    if (shot) el.textContent = t(shot.caption);
-  });
+        bind("[data-bind=field-eyebrow]", c.field.eyebrow);
+        bind("[data-bind=field-title]", c.field.title);
+        bind("[data-bind=field-intro]", c.field.intro);
+        document.querySelectorAll("[data-shot]").forEach((el) => {
+          const shot = c.field.shots[Number(el.dataset.shot)];
+          if (shot) el.textContent = t(shot.caption);
+        });
 
-  bind("[data-bind=roles-eyebrow]", c.roles.eyebrow);
-  bind("[data-bind=roles-title]", c.roles.title);
+        bind("[data-bind=roles-eyebrow]", c.roles.eyebrow);
+        bind("[data-bind=roles-title]", c.roles.title);
 
-  bind("[data-bind=bg-eyebrow]", c.background.eyebrow);
-  bind("[data-bind=bg-title]", c.background.title);
-  renderFacts();
+        bind("[data-bind=bg-eyebrow]", c.background.eyebrow);
+        bind("[data-bind=bg-title]", c.background.title);
+        renderFacts();
 
-  bind("[data-bind=contact-eyebrow]", c.contact.eyebrow);
-  bind("[data-bind=contact-title]", c.contact.title);
-  bind("[data-bind=contact-text]", c.contact.text);
-  const mail = $("#contact-mail");
-  if (mail) {
-    mail.textContent = c.contact.email;
-    mail.href = "mailto:" + c.contact.email;
-  }
-  const li = $("#li");
-  if (li) li.href = c.contact.linkedin || "#";
-  const ig = $("#ig");
-  if (ig) ig.href = c.contact.instagram || "#";
-  const fb = $("#fb");
-  if (fb) fb.href = c.contact.facebook || "#";
-  bind("[data-bind=footer]", c.footer);
+        bind("[data-bind=contact-eyebrow]", c.contact.eyebrow);
+        bind("[data-bind=contact-title]", c.contact.title);
+        bind("[data-bind=contact-text]", c.contact.text);
+        const mail = $("#contact-mail");
+        if (mail) {
+          mail.textContent = c.contact.email;
+          mail.href = "mailto:" + c.contact.email;
+        }
+        const li = $("#li");
+        if (li) li.href = c.contact.linkedin || "#";
+        const ig = $("#ig");
+        if (ig) ig.href = c.contact.instagram || "#";
+        const fb = $("#fb");
+        if (fb) fb.href = c.contact.facebook || "#";
+        bind("[data-bind=footer]", c.footer);
 
-  renderTicker();
-  renderFilters();
-  renderLedger();
-  renderRoles();
-}
+        renderTicker();
+        renderFilters();
+        renderLedger();
+        renderRoles();
+      }
 
-function renderTicker() {
-  const words = CONTENT.ticker.words[lang] || CONTENT.ticker.words.he;
-  const seq = words
-    .map((w, i) => `<span${i === 4 ? ' style="color:var(--rose)"' : ""}>${w}</span>`)
-    .join("");
-  const el = $("#ticker");
-  if (el) el.innerHTML = seq + seq;
-}
+      function renderTicker() {
+        const words = CONTENT.ticker.words[lang] || CONTENT.ticker.words.he;
+        const seq = words
+          .map(
+            (w, i) =>
+              `<span${i === 4 ? ' style="color:var(--rose)"' : ""}>${w}</span>`,
+          )
+          .join("");
+        const el = $("#ticker");
+        if (el) el.innerHTML = seq + seq;
+      }
 
-function renderFilters() {
-  const f = $("#filters");
-  if (!f) return;
-  const domains = CONTENT.record.domains;
-  const all = lang === "he" ? "הכול" : "All";
-  let html = `<button class="chip" data-f="all" aria-pressed="${filter === "all"}">${all}</button>`;
-  for (const k in domains) {
-    html += `<button class="chip" data-f="${k}" aria-pressed="${filter === k}">${t(domains[k])}</button>`;
-  }
-  f.innerHTML = html;
-  f.querySelectorAll(".chip").forEach((c) =>
-    c.addEventListener("click", () => {
-      filter = c.dataset.f;
-      renderFilters();
-      renderLedger();
-    }),
-  );
-}
+      function renderFilters() {
+        const f = $("#filters");
+        if (!f) return;
+        const domains = CONTENT.record.domains;
+        const all = lang === "he" ? "הכול" : "All";
+        let html = `<button class="chip" data-f="all" aria-pressed="${filter === "all"}">${all}</button>`;
+        for (const k in domains) {
+          html += `<button class="chip" data-f="${k}" aria-pressed="${filter === k}">${t(domains[k])}</button>`;
+        }
+        f.innerHTML = html;
+        f.querySelectorAll(".chip").forEach((c) =>
+          c.addEventListener("click", () => {
+            filter = c.dataset.f;
+            renderFilters();
+            renderLedger();
+          }),
+        );
+      }
 
-function renderLedger() {
-  const el = $("#ledger");
-  if (!el) return;
-  const items = CONTENT.record.items;
-  const domains = CONTENT.record.domains;
-  const visible = items
-    .map((r, i) => ({ r, i }))
-    .filter(({ r }) => filter === "all" || filter === r.domain);
-  el.innerHTML = visible
-    .map(({ r, i }) => {
-      const n = String(i + 1).padStart(2, "0");
-      const note = t(r.note);
-      return `<article class="row${r.flag ? " row--flag" : ""}">
+      function renderLedger() {
+        const el = $("#ledger");
+        if (!el) return;
+        const items = CONTENT.record.items;
+        const domains = CONTENT.record.domains;
+        const visible = items
+          .map((r, i) => ({ r, i }))
+          .filter(({ r }) => filter === "all" || filter === r.domain);
+        el.innerHTML = visible
+          .map(({ r, i }) => {
+            const n = String(i + 1).padStart(2, "0");
+            const note = t(r.note);
+            return `<article class="row${r.flag ? " row--flag" : ""}">
       <span class="row__num">${n}</span>
       <div>
         <h3 class="row__title">${t(r.title)}</h3>
@@ -470,18 +480,20 @@ function renderLedger() {
         <span class="row__tag">${t(domains[r.domain])}</span>
       </div>
     </article>`;
-    })
-    .join("");
-  observe(".row");
-}
+          })
+          .join("");
+        observe(".row");
+      }
 
-function renderRoles() {
-  const el = $("#roles");
-  if (!el) return;
-  el.innerHTML = CONTENT.roles.items
-    .map((r) => {
-      const bullets = (r.bullets[lang] || r.bullets.he || []).map((b) => `<li>${b}</li>`).join("");
-      return `<article class="role reveal">
+      function renderRoles() {
+        const el = $("#roles");
+        if (!el) return;
+        el.innerHTML = CONTENT.roles.items
+          .map((r) => {
+            const bullets = (r.bullets[lang] || r.bullets.he || [])
+              .map((b) => `<li>${b}</li>`)
+              .join("");
+            return `<article class="role reveal">
       <div class="role__years" dir="ltr">${t(r.years)}</div>
       <div>
         <h3>${t(r.title)}</h3>
@@ -489,23 +501,25 @@ function renderRoles() {
         <ul>${bullets}</ul>
       </div>
     </article>`;
-    })
-    .join("");
-  observe(".reveal");
-}
+          })
+          .join("");
+        observe(".reveal");
+      }
 
-function renderFacts() {
-  const el = $("#facts");
-  if (!el) return;
-  const b = CONTENT.background;
-  const edu = b.education
-    .map((e) => `<dt>${e.period}</dt><dd>${t(e.text)}</dd>`)
-    .join("");
-  const tags = b.skills.map((s) => `<span class="tag">${t(s)}</span>`).join("");
-  const vol = b.volunteering
-    .map((v) => `<dt>${t(v.title)}</dt><dd>${t(v.text)}</dd>`)
-    .join("");
-  el.innerHTML = `
+      function renderFacts() {
+        const el = $("#facts");
+        if (!el) return;
+        const b = CONTENT.background;
+        const edu = b.education
+          .map((e) => `<dt>${e.period}</dt><dd>${t(e.text)}</dd>`)
+          .join("");
+        const tags = b.skills
+          .map((s) => `<span class="tag">${t(s)}</span>`)
+          .join("");
+        const vol = b.volunteering
+          .map((v) => `<dt>${t(v.title)}</dt><dd>${t(v.text)}</dd>`)
+          .join("");
+        el.innerHTML = `
     <div class="card">
       <h3>${t(b.educationTitle)}</h3>
       <dl>${edu}</dl>
@@ -522,592 +536,596 @@ function renderFacts() {
       <h3>${t(b.volunteerTitle)}</h3>
       <dl>${vol}</dl>
     </div>`;
-}
+      }
 
-function observe(sel) {
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const nodes = [...document.querySelectorAll(sel)];
-  if (reduce) {
-    nodes.forEach((n) => n.classList.add("is-in"));
-    return;
-  }
-  if (!io) {
-    io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-in");
-            io.unobserve(e.target);
-          }
+      function observe(sel) {
+        const reduce = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        const nodes = [...document.querySelectorAll(sel)];
+        if (reduce) {
+          nodes.forEach((n) => n.classList.add("is-in"));
+          return;
+        }
+        if (!io) {
+          io = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((e) => {
+                if (e.isIntersecting) {
+                  e.target.classList.add("is-in");
+                  io.unobserve(e.target);
+                }
+              });
+            },
+            { rootMargin: "0px 0px -6% 0px", threshold: 0.02 },
+          );
+        }
+        nodes.forEach((n) => {
+          const r = n.getBoundingClientRect();
+          if (r.top < innerHeight * 0.94 && r.bottom > 0)
+            n.classList.add("is-in");
+          else io.observe(n);
         });
-      },
-      { rootMargin: "0px 0px -6% 0px", threshold: 0.02 },
-    );
-  }
-  nodes.forEach((n) => {
-    const r = n.getBoundingClientRect();
-    if (r.top < innerHeight * 0.94 && r.bottom > 0) n.classList.add("is-in");
-    else io.observe(n);
-  });
-}
-
-function setLang(next) {
-  lang = next;
-  const isHe = lang === "he";
-  document.documentElement.lang = isHe ? "he" : "en";
-  document.documentElement.dir = isHe ? "rtl" : "ltr";
-  const btn = $("#langbtn");
-  if (btn) btn.textContent = isHe ? "ENGLISH" : "עברית";
-  applyContent();
-}
-
-const progress = $("#progress");
-if (progress) {
-  window.addEventListener(
-    "scroll",
-    () => {
-      const h = document.documentElement;
-      const p = h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight);
-      progress.style.transform = `scaleX(${p})`;
-    },
-    { passive: true },
-  );
-}
-
-$("#langbtn")?.addEventListener("click", () => setLang(lang === "he" ? "en" : "he"));
-
-CONTENT = {
-  "site": {
-    "name": { "he": "נעמה כהן", "en": "Naama Cohen" },
-    "title": {
-      "he": "נעמה כהן — מנכ״לית, אסטרטגיה וקשרי ממשל",
-      "en": "Naama Cohen — CEO, Strategy and Government Relations"
-    },
-    "description": {
-      "he": "נעמה כהן — מנכ״לית מרשם, ארגון המתמחים לרפואה. אסטרטגיה, קשרי ממשל, חקיקה וקמפיינים ציבוריים.",
-      "en": "Naama Cohen — CEO of Mirsham, the Israeli Medical Residents' Organization. Strategy, government relations, legislation and public campaigns."
-    }
-  },
-  "nav": {
-    "work": { "he": "יוזמות", "en": "Work" },
-    "field": { "he": "בשטח", "en": "Field" },
-    "roles": { "he": "תפקידים", "en": "Roles" },
-    "contact": { "he": "קשר", "en": "Contact" }
-  },
-  "hero": {
-    "first": { "he": "נעמה", "en": "Naama" },
-    "last": { "he": "כהן", "en": "Cohen" },
-    "lead": {
-      "he": "מובילה ארגונים וקמפיינים שמשנים מדיניות — מתנאי ההעסקה של הרופאות והרופאים המתמחים ועד לחקיקה בכנסת.",
-      "en": "I lead organizations and campaigns that change policy — from the working conditions of Israel's medical residents to legislation in the Knesset."
-    },
-    "body": {
-      "he": "מנכ״לית ואשת אסטרטגיה בעלת ניסיון עשיר והישגים מוכחים בהובלת ארגונים, ניהול קשרי ממשל מורכבים ועיצוב מדיניות ציבורית. מומחית בהובלת קמפיינים ציבוריים וגיוס המונים בקנה מידה רחב, ניהול תקציבים וניהול משברים בסביבה פוליטית וציבורית דינמית.",
-      "en": "Executive and strategist with a proven record in leading organizations, managing complex government relations and shaping public policy. Specializing in national public campaigns and grassroots mobilization, budget management, and crisis management in a dynamic political environment."
-    },
-    "meta": [
-      {
-        "he": "מרשם — ארגון המתמחים לרפואה",
-        "en": "Mirsham — Israeli Medical Residents' Organization"
-      },
-      { "he": "M.A. אוניברסיטת רייכמן", "en": "M.A. Reichman University" },
-      { "he": "תעודת דירקטורית", "en": "Certified Director" }
-    ]
-  },
-  "ticker": {
-    "words": {
-      "he": [
-        "מנכ״לית",
-        "אסטרטגיה",
-        "קשרי ממשל",
-        "חקיקה",
-        "קמפיינים",
-        "גיוס המונים",
-        "ניהול משברים",
-        "לובינג"
-      ],
-      "en": [
-        "CEO",
-        "Strategy",
-        "Government relations",
-        "Legislation",
-        "Campaigns",
-        "Grassroots",
-        "Crisis management",
-        "Lobbying"
-      ]
-    }
-  },
-  "record": {
-    "title": {
-      "he": "שבע־עשרה יוזמות, חוקים ורפורמות",
-      "en": "Seventeen initiatives, laws and reforms"
-    },
-    "intro": {
-      "he": "קמפיינים ומאבקים שיזמתי, הובלתי או לקחתי בהם חלק. אפשר לסנן לפי תחום.",
-      "en": "Campaigns I initiated, led or took part in. Filter by field."
-    },
-    "flagship": { "he": "יוזמות דגל", "en": "Flagship initiatives" },
-    "domains": {
-      "health": { "he": "בריאות", "en": "Health" },
-      "law": { "he": "חקיקה ומדיניות", "en": "Legislation & policy" },
-      "street": { "he": "מחאה וארגון", "en": "Protest & organizing" },
-      "pol": { "he": "פוליטיקה", "en": "Politics" },
-      "prod": { "he": "הפקות ואירועים", "en": "Events & production" }
-    },
-    "items": [
-      {
-        "domain": "health",
-        "year": "2023",
-        "flag": true,
-        "title": {
-          "he": "קיצור תורנויות המתמחים",
-          "en": "Shortening residents' on-call shifts"
-        },
-        "note": {
-          "he": "רפורמה בתנאי ההעסקה של הרופאות והרופאים המתמחים",
-          "en": "Reform of employment terms for medical residents"
-        }
-      },
-      {
-        "domain": "law",
-        "year": "",
-        "flag": true,
-        "title": {
-          "he": "הכנסת מרכזי החוסן לבסיס תקציב המדינה",
-          "en": "Resilience centers into the state budget base"
-        },
-        "note": {
-          "he": "תקצוב קבוע ומעוגן למרכזי החוסן",
-          "en": "Permanent, anchored funding for resilience centers"
-        }
-      },
-      {
-        "domain": "law",
-        "year": "",
-        "flag": true,
-        "title": {
-          "he": "הפסקת גידול תרנגולות בלולי כלובים",
-          "en": "Ending battery-cage egg production"
-        },
-        "note": {
-          "he": "רפורמה בענף ההטלה ורווחת בעלי חיים",
-          "en": "Reform of the laying industry and animal welfare"
-        }
-      },
-      {
-        "domain": "street",
-        "year": "",
-        "flag": true,
-        "title": {
-          "he": "מחאת הנשים להחזרת החטופות והחטופים",
-          "en": "The women's protest for the return of the hostages"
-        },
-        "note": {
-          "he": "ממובילות המחאה",
-          "en": "Among the leaders of the movement"
-        }
-      },
-      {
-        "domain": "law",
-        "year": "2021",
-        "flag": false,
-        "title": {
-          "he": "הצעת חוק צעירים חסרי עורף משפחתי",
-          "en": "Bill for young people without family support"
-        },
-        "note": {
-          "he": "הכנסת ה־24 · עברה קריאה טרומית",
-          "en": "24th Knesset · passed preliminary reading"
-        }
-      },
-      {
-        "domain": "health",
-        "year": "",
-        "flag": false,
-        "title": {
-          "he": "מאבק בקיצוץ תקני הרופאות והרופאים בקורונה",
-          "en": "Fighting cuts to physician staffing during COVID-19"
-        },
-        "note": { "he": "", "en": "" }
-      },
-      {
-        "domain": "health",
-        "year": "",
-        "flag": false,
-        "title": {
-          "he": "מאבק בביטול הארכת חופשת הלידה לנשים במקצועות מיוחדים",
-          "en": "Fighting the repeal of extended maternity leave in specialized professions"
-        },
-        "note": { "he": "", "en": "" }
-      },
-      {
-        "domain": "health",
-        "year": "",
-        "flag": false,
-        "title": {
-          "he": "סיוע נפשי לצוותים רפואיים",
-          "en": "Mental health support for medical teams"
-        },
-        "note": {
-          "he": "במהלך מלחמת חרבות ברזל",
-          "en": "During the Iron Swords war"
-        }
-      },
-      {
-        "domain": "health",
-        "year": "",
-        "flag": false,
-        "title": {
-          "he": "תזכיר חוק למניעת אלימות במוסדות למתן טיפול",
-          "en": "Draft bill to prevent violence in care institutions"
-        },
-        "note": { "he": "", "en": "" }
-      },
-      {
-        "domain": "law",
-        "year": "",
-        "flag": false,
-        "title": {
-          "he": "מאבק בחוק גירוש הפליטים",
-          "en": "Fighting the refugee deportation law"
-        },
-        "note": { "he": "", "en": "" }
-      },
-      {
-        "domain": "law",
-        "year": "",
-        "flag": false,
-        "title": {
-          "he": "הקמת שדולת המוסיקה הישראלית",
-          "en": "Founding the Israeli Music Lobby"
-        },
-        "note": { "he": "", "en": "" }
-      },
-      {
-        "domain": "law",
-        "year": "2018",
-        "flag": false,
-        "title": { "he": "נתב״ג 2 בנבטים", "en": "Ben Gurion 2 at Nevatim" },
-        "note": {
-          "he": "המאבק בהקמת נמל תעופה משלים ברמת דוד",
-          "en": "Opposing a supplementary airport at Ramat David"
-        }
-      },
-      {
-        "domain": "law",
-        "year": "2025, 2026",
-        "flag": false,
-        "title": {
-          "he": "מניעת סגירת גני ילדים במרכז תל אביב",
-          "en": "Preventing the closure of kindergartens in central Tel Aviv"
-        },
-        "note": { "he": "", "en": "" }
-      },
-      {
-        "domain": "street",
-        "year": "",
-        "flag": false,
-        "title": {
-          "he": "הקמת ״צעדת את לא אשמה״ באר שבע",
-          "en": "Founding the \"It's Not Your Fault\" march, Be'er Sheva"
-        },
-        "note": { "he": "", "en": "" }
-      },
-      {
-        "domain": "pol",
-        "year": "2019",
-        "flag": false,
-        "title": {
-          "he": "הפקות במפלגת העבודה",
-          "en": "Event production, Labor Party"
-        },
-        "note": { "he": "", "en": "" }
-      },
-      {
-        "domain": "prod",
-        "year": "2016",
-        "flag": false,
-        "title": {
-          "he": "אירוע הסליחות הגדול בירושלים",
-          "en": "Jerusalem's largest Selichot event"
-        },
-        "note": {
-          "he": "הפקה מטעם מטה ראש העיר ניר ברקת",
-          "en": "Produced for Mayor Nir Barkat's headquarters"
-        }
-      },
-      {
-        "domain": "prod",
-        "year": "2025",
-        "flag": false,
-        "title": {
-          "he": "120 שנה לגימנסיה העברית הרצליה",
-          "en": "120 years of the Herzliya Hebrew Gymnasium"
-        },
-        "note": {
-          "he": "הובלת אירוע הבוגרות והבוגרים",
-          "en": "Leading the alumni event"
-        }
       }
-    ]
-  },
-  "quote": {
-    "text": {
-      "he": "לא צריכים לעבוד יותר מ־26 שעות ברצף.",
-      "en": "No one should have to work more than 26 hours straight."
-    },
-    "source": {
-      "he": "מתוך הקמפיין לקיצור תורנויות המתמחים",
-      "en": "From the campaign to shorten residents' on-call shifts"
-    }
-  },
-  "field": {
-    "eyebrow": { "he": "בשטח", "en": "In the field" },
-    "title": {
-      "he": "מחאת הנשים להחזרת החטופות והחטופים",
-      "en": "The women's protest for the hostages"
-    },
-    "intro": {
-      "he": "ארגון, לוגיסטיקה ועמידה על הכביש — מהשבועות הראשונים ועד היום.",
-      "en": "Organizing, logistics and standing on the road — from the first weeks to today."
-    },
-    "shots": [
-      {
-        "caption": {
-          "he": "״לא עוצרות עד שכולם וכולן חוזרות״",
-          "en": "“We don’t stop until every one of them is home”"
-        }
-      },
-      {
-        "caption": {
-          "he": "צעדת המחאה סביב הקריה, תל אביב",
-          "en": "The protest march around the Kirya, Tel Aviv"
-        }
-      },
-      {
-        "caption": {
-          "he": "סגירת מעגל עם גדי מוזס",
-          "en": "Closing a circle with Gadi Moses"
-        }
-      },
-      {
-        "caption": {
-          "he": "חסימת נתיבי איילון",
-          "en": "Blocking the Ayalon highway"
-        }
-      },
-      {
-        "caption": {
-          "he": "צילום: תומר אפלבאום",
-          "en": "Photo: Tomer Appelbaum"
-        }
-      },
-      {
-        "caption": {
-          "he": "ריאיון בערוץ הכנסת",
-          "en": "Interviewed on the Knesset Channel"
-        }
-      }
-    ]
-  },
-  "roles": {
-    "eyebrow": { "he": "ניסיון", "en": "Experience" },
-    "title": { "he": "תפקידים", "en": "Roles" },
-    "items": [
-      {
-        "years": { "he": "2020 – היום", "en": "2020 – present" },
-        "title": { "he": "מנכ״לית", "en": "Chief Executive Officer" },
-        "org": {
-          "he": "מרשם — ארגון המתמחים לרפואה",
-          "en": "Mirsham — Israeli Medical Residents' Organization"
-        },
-        "bullets": {
-          "he": [
-            "ניהול אסטרטגי ותפעולי של הארגון המוביל את מאבק הרופאות והרופאים המתמחים בישראל, תוך הובלת שינוי היסטורי בתנאי ההעסקה ובמבנה התורנויות.",
-            "קשרי ממשל ולובינג מול דרגים בכירים במשרדי הבריאות, האוצר והכלכלה, בכנסת ובגופים רגולטוריים.",
-            "ניהול והנחיית עובדי הארגון, עבודה שוטפת מול הוועד המנהל והתוויית מדיניות ארוכת טווח.",
-            "פיקוח על תקציבי הארגון, כולל ייזום והובלת קמפיינים ארציים של גיוס המונים.",
-            "ניהול והנחיית יועצים חיצוניים — משפטיים, תקשורתיים ואסטרטגיים — וספקים."
-          ],
-          "en": [
-            "Full strategic and operational leadership of the organization driving Israel's medical residents' campaign, delivering historic change in employment terms and shift structure.",
-            "Government relations and lobbying with senior officials across the Ministries of Health, Finance and Economy, the Knesset and regulatory bodies.",
-            "Managing staff, working with the board, and setting long-term policy.",
-            "Budget oversight, including initiating and leading national grassroots fundraising campaigns.",
-            "Recruiting and directing external legal, communications and strategy advisors."
-          ]
-        }
-      },
-      {
-        "years": { "he": "2021 – 2022", "en": "2021 – 2022" },
-        "title": {
-          "he": "יועצת אסטרטגיה, קשרי ממשל ולובינג",
-          "en": "Strategy, Government Relations & Lobbying Consultant"
-        },
-        "org": { "he": "אימפקט", "en": "Impact" },
-        "bullets": {
-          "he": [
-            "ניהול תיקי לקוחות מובילים מהמגזר העסקי והחברתי וייצוג האינטרסים שלהם מול מקבלי החלטות.",
-            "גיבוש אסטרטגיות רגולטוריות, כתיבת ניירות עמדה ומיפוי פוליטי וציבורי.",
-            "קידום חקיקה, תקצוב ושינוי תקנות."
-          ],
-          "en": [
-            "Managing leading business and social-sector client portfolios and representing their interests before decision-makers.",
-            "Building regulatory strategies, writing position papers, and political and public mapping.",
-            "Advancing legislation, budgets and regulatory change."
-          ]
-        }
-      },
-      {
-        "years": { "he": "2018 – 2019", "en": "2018 – 2019" },
-        "title": { "he": "מפיקת שטח", "en": "Field Production Manager" },
-        "org": {
-          "he": "קמפיין בחירות, מפלגת העבודה",
-          "en": "Election campaign, Labor Party"
-        },
-        "bullets": {
-          "he": [
-            "ניהול והפקה של מערך אירועי השטח וכנסי המועמדים ברמה הארצית, מהתכנון ועד לביצוע.",
-            "משא ומתן, התקשרויות ובקרת תקציבים מול ספקי מדיה, הפקה ולוגיסטיקה.",
-            "כתיבת תכנים שיווקיים ופוליטיים ותיאום מערך הפרסום והדוברות."
-          ],
-          "en": [
-            "Managing and producing the national field-event and candidate-conference operation, from planning to execution.",
-            "Negotiation, contracting and budget control with media, production and logistics vendors.",
-            "Writing marketing and political content and coordinating advertising and spokesperson operations."
-          ]
-        }
-      },
-      {
-        "years": { "he": "2017 – 2018", "en": "2017 – 2018" },
-        "title": {
-          "he": "רכזת תקשורת, ניו־מדיה ולובי",
-          "en": "Communications, New Media & Lobbying Coordinator"
-        },
-        "org": { "he": "מועצת הנגב", "en": "The Negev Council" },
-        "bullets": {
-          "he": [
-            "ניהול מערך הדוברות והקשר השוטף מול כלי התקשורת הארציים והמקומיים.",
-            "ייזום שיתופי פעולה וקואליציות בין רשויות מקומיות וארגוני חברה אזרחית.",
-            "ניהול, יצירת תוכן ופיתוח הערוצים הדיגיטליים של המועצה."
-          ],
-          "en": [
-            "Running spokesperson operations and day-to-day relations with national and local media.",
-            "Initiating strategic partnerships and coalitions between local authorities and civil-society organizations.",
-            "Managing, creating content for and developing the council's digital channels."
-          ]
-        }
-      },
-      {
-        "years": { "he": "2016", "en": "2016" },
-        "title": { "he": "מנהלת משרד", "en": "Office Manager" },
-        "org": { "he": "מטה ניר ברקת", "en": "Nir Barkat headquarters" },
-        "bullets": {
-          "he": [
-            "ניהול אדמיניסטרטיבי, לוגיסטי ותפעולי של המטה, כולל יומן מורכב ותיאום סיורים.",
-            "הקמה ותפעול של מערך רישום, קליטה וגיוס שהביא להצטרפותם של אלפי פעילים חדשים."
-          ],
-          "en": [
-            "Administrative, logistical and operational management of the headquarters, including a complex calendar and tour coordination.",
-            "Building and running a registration and recruitment operation that brought in thousands of new activists."
-          ]
-        }
-      }
-    ]
-  },
-  "background": {
-    "eyebrow": { "he": "רקע", "en": "Background" },
-    "title": {
-      "he": "השכלה, כישורים והתנדבות",
-      "en": "Education, skills, volunteering"
-    },
-    "educationTitle": { "he": "השכלה", "en": "Education" },
-    "skillsTitle": { "he": "כישורים ושפות", "en": "Skills & languages" },
-    "volunteerTitle": { "he": "התנדבות", "en": "Volunteering" },
-    "languagesLabel": { "he": "שפות", "en": "Languages" },
-    "education": [
-      {
-        "period": "2021–2022",
-        "text": {
-          "he": "M.A. בהצטיינות — ממשל, מדיניות ציבורית ושיווק פוליטי, אוניברסיטת רייכמן",
-          "en": "M.A. with honors — Government, Public Policy & Political Marketing, Reichman University"
-        }
-      },
-      {
-        "period": "2016–2019",
-        "text": {
-          "he": "B.A. — פוליטיקה וממשל ותקשורת, אוניברסיטת בן גוריון",
-          "en": "B.A. — Politics & Government and Communications, Ben-Gurion University"
-        }
-      },
-      {
-        "period": "2024",
-        "text": {
-          "he": "תעודת דירקטורית — האוניברסיטה העברית",
-          "en": "Certified Director — Hebrew University"
-        }
-      },
-      {
-        "period": "2012–2014",
-        "text": {
-          "he": "שירות מלא, חיל האוויר",
-          "en": "Israeli Air Force — full service"
-        }
-      }
-    ],
-    "skills": [
-      { "he": "אסטרטגיה ולובינג", "en": "Strategy & lobbying" },
-      { "he": "ניהול ארגוני", "en": "Organizational management" },
-      { "he": "קשרי ממשל", "en": "Government relations" },
-      { "he": "גיוס המונים", "en": "Grassroots mobilization" },
-      { "he": "ניהול קמפיינים", "en": "Campaign management" },
-      { "he": "הפקת אירועים", "en": "Event production" },
-      { "he": "ניו־מדיה", "en": "New media" },
-      { "he": "כתיבת תוכן", "en": "Content writing" }
-    ],
-    "languages": {
-      "he": "עברית — שפת אם · אנגלית — גבוהה · ספרדית — גבוהה",
-      "en": "Hebrew — native · English — advanced · Spanish — advanced"
-    },
-    "volunteering": [
-      {
-        "title": {
-          "he": "״15 דקות״ לקידום התחבורה הציבורית",
-          "en": "\"15 Minutes\" — public transport advocacy"
-        },
-        "text": {
-          "he": "חברת ועדת ביקורת — פיקוח על הדו״ח הכספי וייעוץ למנכ״לית",
-          "en": "Audit committee member — financial oversight and advisory to the CEO"
-        }
-      },
-      {
-        "title": { "he": "״מפגינות נוכחות״", "en": "\"Mafginot Nokhachot\"" },
-        "text": {
-          "he": "הדרכת מתנדבים בהשתתפות פעילה בכנסת",
-          "en": "Training volunteers on active participation in the Knesset"
-        }
-      }
-    ]
-  },
-  "contact": {
-    "eyebrow": { "he": "יצירת קשר", "en": "Get in touch" },
-    "title": { "he": "בואו נדבר.", "en": "Let's talk." },
-    "text": {
-      "he": "פתוחה לתפקידי ניהול ודירקטוריון, ייעוץ אסטרטגי, הרצאות ופאנלים.",
-      "en": "Open to board positions, executive roles, strategic consulting and speaking engagements."
-    },
-    "email": "naamaco04@gmail.com",
-    "linkedin": "",
-    "instagram": "https://www.instagram.com/naamaco1",
-    "facebook": "https://www.facebook.com/naama.cohen.31"
-  },
-  "footer": { "he": "© 2026 נעמה כהן", "en": "© 2026 Naama Cohen" }
-};
-applyContent();
-observe(".reveal");
 
+      function setLang(next) {
+        lang = next;
+        const isHe = lang === "he";
+        document.documentElement.lang = isHe ? "he" : "en";
+        document.documentElement.dir = isHe ? "rtl" : "ltr";
+        const btn = $("#langbtn");
+        if (btn) btn.textContent = isHe ? "ENGLISH" : "עברית";
+        applyContent();
+      }
+
+      const progress = $("#progress");
+      if (progress) {
+        window.addEventListener(
+          "scroll",
+          () => {
+            const h = document.documentElement;
+            const p =
+              h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight);
+            progress.style.transform = `scaleX(${p})`;
+          },
+          { passive: true },
+        );
+      }
+
+      $("#langbtn")?.addEventListener("click", () =>
+        setLang(lang === "he" ? "en" : "he"),
+      );
+
+      CONTENT = {
+        site: {
+          name: { he: "נעמה כהן", en: "Naama Cohen" },
+          title: {
+            he: "נעמה כהן — מנכ״לית, אסטרטגיה וקשרי ממשל",
+            en: "Naama Cohen — CEO, Strategy and Government Relations",
+          },
+          description: {
+            he: "נעמה כהן — מנכ״לית מרשם, ארגון המתמחים לרפואה. אסטרטגיה, קשרי ממשל, חקיקה וקמפיינים ציבוריים.",
+            en: "Naama Cohen — CEO of Mirsham, the Israeli Medical Residents' Organization. Strategy, government relations, legislation and public campaigns.",
+          },
+        },
+        nav: {
+          work: { he: "יוזמות", en: "Work" },
+          field: { he: "בשטח", en: "Field" },
+          roles: { he: "תפקידים", en: "Roles" },
+          contact: { he: "קשר", en: "Contact" },
+        },
+        hero: {
+          first: { he: "נעמה", en: "Naama" },
+          last: { he: "כהן", en: "Cohen" },
+          lead: {
+            he: "מובילה ארגונים וקמפיינים שמשנים מדיניות — מתנאי ההעסקה של הרופאות והרופאים המתמחים ועד לחקיקה בכנסת.",
+            en: "I lead organizations and campaigns that change policy — from the working conditions of Israel's medical residents to legislation in the Knesset.",
+          },
+          body: {
+            he: "מנכ״לית ואשת אסטרטגיה בעלת ניסיון עשיר והישגים מוכחים בהובלת ארגונים, ניהול קשרי ממשל מורכבים ועיצוב מדיניות ציבורית. מומחית בהובלת קמפיינים ציבוריים וגיוס המונים בקנה מידה רחב, ניהול תקציבים וניהול משברים בסביבה פוליטית וציבורית דינמית.",
+            en: "Executive and strategist with a proven record in leading organizations, managing complex government relations and shaping public policy. Specializing in national public campaigns and grassroots mobilization, budget management, and crisis management in a dynamic political environment.",
+          },
+          meta: [
+            {
+              he: "מרשם — ארגון המתמחים לרפואה",
+              en: "Mirsham — Israeli Medical Residents' Organization",
+            },
+            { he: "M.A. אוניברסיטת רייכמן", en: "M.A. Reichman University" },
+            { he: "תעודת דירקטורית", en: "Certified Director" },
+          ],
+        },
+        ticker: {
+          words: {
+            he: [
+              "מנכ״לית",
+              "אסטרטגיה",
+              "קשרי ממשל",
+              "חקיקה",
+              "קמפיינים",
+              "גיוס המונים",
+              "ניהול משברים",
+              "לובינג",
+            ],
+            en: [
+              "CEO",
+              "Strategy",
+              "Government relations",
+              "Legislation",
+              "Campaigns",
+              "Grassroots",
+              "Crisis management",
+              "Lobbying",
+            ],
+          },
+        },
+        record: {
+          title: {
+            he: "שבע־עשרה יוזמות, חוקים ורפורמות",
+            en: "Seventeen initiatives, laws and reforms",
+          },
+          intro: {
+            he: "קמפיינים ומאבקים שיזמתי, הובלתי או לקחתי בהם חלק. אפשר לסנן לפי תחום.",
+            en: "Campaigns I initiated, led or took part in. Filter by field.",
+          },
+          flagship: { he: "יוזמות דגל", en: "Flagship initiatives" },
+          domains: {
+            health: { he: "בריאות", en: "Health" },
+            law: { he: "חקיקה ומדיניות", en: "Legislation & policy" },
+            street: { he: "מחאה וארגון", en: "Protest & organizing" },
+            pol: { he: "פוליטיקה", en: "Politics" },
+            prod: { he: "הפקות ואירועים", en: "Events & production" },
+          },
+          items: [
+            {
+              domain: "health",
+              year: "2023",
+              flag: true,
+              title: {
+                he: "קיצור תורנויות המתמחים",
+                en: "Shortening residents' on-call shifts",
+              },
+              note: {
+                he: "רפורמה בתנאי ההעסקה של הרופאות והרופאים המתמחים",
+                en: "Reform of employment terms for medical residents",
+              },
+            },
+            {
+              domain: "law",
+              year: "",
+              flag: true,
+              title: {
+                he: "הכנסת מרכזי החוסן לבסיס תקציב המדינה",
+                en: "Resilience centers into the state budget base",
+              },
+              note: {
+                he: "תקצוב קבוע ומעוגן למרכזי החוסן",
+                en: "Permanent, anchored funding for resilience centers",
+              },
+            },
+            {
+              domain: "law",
+              year: "",
+              flag: true,
+              title: {
+                he: "הפסקת גידול תרנגולות בלולי כלובים",
+                en: "Ending battery-cage egg production",
+              },
+              note: {
+                he: "רפורמה בענף ההטלה ורווחת בעלי חיים",
+                en: "Reform of the laying industry and animal welfare",
+              },
+            },
+            {
+              domain: "street",
+              year: "",
+              flag: true,
+              title: {
+                he: "מחאת הנשים להחזרת החטופות והחטופים",
+                en: "The women's protest for the return of the hostages",
+              },
+              note: {
+                he: "ממובילות המחאה",
+                en: "Among the leaders of the movement",
+              },
+            },
+            {
+              domain: "law",
+              year: "2021",
+              flag: false,
+              title: {
+                he: "הצעת חוק צעירים חסרי עורף משפחתי",
+                en: "Bill for young people without family support",
+              },
+              note: {
+                he: "הכנסת ה־24 · עברה קריאה טרומית",
+                en: "24th Knesset · passed preliminary reading",
+              },
+            },
+            {
+              domain: "health",
+              year: "",
+              flag: false,
+              title: {
+                he: "מאבק בקיצוץ תקני הרופאות והרופאים בקורונה",
+                en: "Fighting cuts to physician staffing during COVID-19",
+              },
+              note: { he: "", en: "" },
+            },
+            {
+              domain: "health",
+              year: "",
+              flag: false,
+              title: {
+                he: "מאבק בביטול הארכת חופשת הלידה לנשים במקצועות מיוחדים",
+                en: "Fighting the repeal of extended maternity leave in specialized professions",
+              },
+              note: { he: "", en: "" },
+            },
+            {
+              domain: "health",
+              year: "",
+              flag: false,
+              title: {
+                he: "סיוע נפשי לצוותים רפואיים",
+                en: "Mental health support for medical teams",
+              },
+              note: {
+                he: "במהלך מלחמת חרבות ברזל",
+                en: "During the Iron Swords war",
+              },
+            },
+            {
+              domain: "health",
+              year: "",
+              flag: false,
+              title: {
+                he: "תזכיר חוק למניעת אלימות במוסדות למתן טיפול",
+                en: "Draft bill to prevent violence in care institutions",
+              },
+              note: { he: "", en: "" },
+            },
+            {
+              domain: "law",
+              year: "",
+              flag: false,
+              title: {
+                he: "מאבק בחוק גירוש הפליטים",
+                en: "Fighting the refugee deportation law",
+              },
+              note: { he: "", en: "" },
+            },
+            {
+              domain: "law",
+              year: "",
+              flag: false,
+              title: {
+                he: "הקמת שדולת המוסיקה הישראלית",
+                en: "Founding the Israeli Music Lobby",
+              },
+              note: { he: "", en: "" },
+            },
+            {
+              domain: "law",
+              year: "2018",
+              flag: false,
+              title: { he: "נתב״ג 2 בנבטים", en: "Ben Gurion 2 at Nevatim" },
+              note: {
+                he: "המאבק בהקמת נמל תעופה משלים ברמת דוד",
+                en: "Opposing a supplementary airport at Ramat David",
+              },
+            },
+            {
+              domain: "law",
+              year: "2025, 2026",
+              flag: false,
+              title: {
+                he: "מניעת סגירת גני ילדים במרכז תל אביב",
+                en: "Preventing the closure of kindergartens in central Tel Aviv",
+              },
+              note: { he: "", en: "" },
+            },
+            {
+              domain: "street",
+              year: "",
+              flag: false,
+              title: {
+                he: "הקמת ״צעדת את לא אשמה״ באר שבע",
+                en: "Founding the \"It's Not Your Fault\" march, Be'er Sheva",
+              },
+              note: { he: "", en: "" },
+            },
+            {
+              domain: "pol",
+              year: "2019",
+              flag: false,
+              title: {
+                he: "הפקות במפלגת העבודה",
+                en: "Event production, Labor Party",
+              },
+              note: { he: "", en: "" },
+            },
+            {
+              domain: "prod",
+              year: "2016",
+              flag: false,
+              title: {
+                he: "אירוע הסליחות הגדול בירושלים",
+                en: "Jerusalem's largest Selichot event",
+              },
+              note: {
+                he: "הפקה מטעם מטה ראש העיר ניר ברקת",
+                en: "Produced for Mayor Nir Barkat's headquarters",
+              },
+            },
+            {
+              domain: "prod",
+              year: "2025",
+              flag: false,
+              title: {
+                he: "120 שנה לגימנסיה העברית הרצליה",
+                en: "120 years of the Herzliya Hebrew Gymnasium",
+              },
+              note: {
+                he: "הובלת אירוע הבוגרות והבוגרים",
+                en: "Leading the alumni event",
+              },
+            },
+          ],
+        },
+        quote: {
+          text: {
+            he: "לא צריכים לעבוד יותר מ־26 שעות ברצף.",
+            en: "No one should have to work more than 26 hours straight.",
+          },
+          source: {
+            he: "מתוך הקמפיין לקיצור תורנויות המתמחים",
+            en: "From the campaign to shorten residents' on-call shifts",
+          },
+        },
+        field: {
+          eyebrow: { he: "בשטח", en: "In the field" },
+          title: {
+            he: "מחאת הנשים להחזרת החטופות והחטופים",
+            en: "The women's protest for the hostages",
+          },
+          intro: {
+            he: "ארגון, לוגיסטיקה ועמידה על הכביש — מהשבועות הראשונים ועד היום.",
+            en: "Organizing, logistics and standing on the road — from the first weeks to today.",
+          },
+          shots: [
+            {
+              caption: {
+                he: "״לא עוצרות עד שכולם וכולן חוזרות״",
+                en: "“We don’t stop until every one of them is home”",
+              },
+            },
+            {
+              caption: {
+                he: "צעדת המחאה סביב הקריה, תל אביב",
+                en: "The protest march around the Kirya, Tel Aviv",
+              },
+            },
+            {
+              caption: {
+                he: "סגירת מעגל עם גדי מוזס",
+                en: "Closing a circle with Gadi Moses",
+              },
+            },
+            {
+              caption: {
+                he: "חסימת נתיבי איילון",
+                en: "Blocking the Ayalon highway",
+              },
+            },
+            {
+              caption: {
+                he: "צילום: תומר אפלבאום",
+                en: "Photo: Tomer Appelbaum",
+              },
+            },
+            {
+              caption: {
+                he: "ריאיון בערוץ הכנסת",
+                en: "Interviewed on the Knesset Channel",
+              },
+            },
+          ],
+        },
+        roles: {
+          eyebrow: { he: "ניסיון", en: "Experience" },
+          title: { he: "תפקידים", en: "Roles" },
+          items: [
+            {
+              years: { he: "2020 – היום", en: "2020 – present" },
+              title: { he: "מנכ״לית", en: "Chief Executive Officer" },
+              org: {
+                he: "מרשם — ארגון המתמחים לרפואה",
+                en: "Mirsham — Israeli Medical Residents' Organization",
+              },
+              bullets: {
+                he: [
+                  "ניהול אסטרטגי ותפעולי של הארגון המוביל את מאבק הרופאות והרופאים המתמחים בישראל, תוך הובלת שינוי היסטורי בתנאי ההעסקה ובמבנה התורנויות.",
+                  "קשרי ממשל ולובינג מול דרגים בכירים במשרדי הבריאות, האוצר והכלכלה, בכנסת ובגופים רגולטוריים.",
+                  "ניהול והנחיית עובדי הארגון, עבודה שוטפת מול הוועד המנהל והתוויית מדיניות ארוכת טווח.",
+                  "פיקוח על תקציבי הארגון, כולל ייזום והובלת קמפיינים ארציים של גיוס המונים.",
+                  "ניהול והנחיית יועצים חיצוניים — משפטיים, תקשורתיים ואסטרטגיים — וספקים.",
+                ],
+                en: [
+                  "Full strategic and operational leadership of the organization driving Israel's medical residents' campaign, delivering historic change in employment terms and shift structure.",
+                  "Government relations and lobbying with senior officials across the Ministries of Health, Finance and Economy, the Knesset and regulatory bodies.",
+                  "Managing staff, working with the board, and setting long-term policy.",
+                  "Budget oversight, including initiating and leading national grassroots fundraising campaigns.",
+                  "Recruiting and directing external legal, communications and strategy advisors.",
+                ],
+              },
+            },
+            {
+              years: { he: "2021 – 2022", en: "2021 – 2022" },
+              title: {
+                he: "יועצת אסטרטגיה, קשרי ממשל ולובינג",
+                en: "Strategy, Government Relations & Lobbying Consultant",
+              },
+              org: { he: "אימפקט", en: "Impact" },
+              bullets: {
+                he: [
+                  "ניהול תיקי לקוחות מובילים מהמגזר העסקי והחברתי וייצוג האינטרסים שלהם מול מקבלי החלטות.",
+                  "גיבוש אסטרטגיות רגולטוריות, כתיבת ניירות עמדה ומיפוי פוליטי וציבורי.",
+                  "קידום חקיקה, תקצוב ושינוי תקנות.",
+                ],
+                en: [
+                  "Managing leading business and social-sector client portfolios and representing their interests before decision-makers.",
+                  "Building regulatory strategies, writing position papers, and political and public mapping.",
+                  "Advancing legislation, budgets and regulatory change.",
+                ],
+              },
+            },
+            {
+              years: { he: "2018 – 2019", en: "2018 – 2019" },
+              title: { he: "מפיקת שטח", en: "Field Production Manager" },
+              org: {
+                he: "קמפיין בחירות, מפלגת העבודה",
+                en: "Election campaign, Labor Party",
+              },
+              bullets: {
+                he: [
+                  "ניהול והפקה של מערך אירועי השטח וכנסי המועמדים ברמה הארצית, מהתכנון ועד לביצוע.",
+                  "משא ומתן, התקשרויות ובקרת תקציבים מול ספקי מדיה, הפקה ולוגיסטיקה.",
+                  "כתיבת תכנים שיווקיים ופוליטיים ותיאום מערך הפרסום והדוברות.",
+                ],
+                en: [
+                  "Managing and producing the national field-event and candidate-conference operation, from planning to execution.",
+                  "Negotiation, contracting and budget control with media, production and logistics vendors.",
+                  "Writing marketing and political content and coordinating advertising and spokesperson operations.",
+                ],
+              },
+            },
+            {
+              years: { he: "2017 – 2018", en: "2017 – 2018" },
+              title: {
+                he: "רכזת תקשורת, ניו־מדיה ולובי",
+                en: "Communications, New Media & Lobbying Coordinator",
+              },
+              org: { he: "מועצת הנגב", en: "The Negev Council" },
+              bullets: {
+                he: [
+                  "ניהול מערך הדוברות והקשר השוטף מול כלי התקשורת הארציים והמקומיים.",
+                  "ייזום שיתופי פעולה וקואליציות בין רשויות מקומיות וארגוני חברה אזרחית.",
+                  "ניהול, יצירת תוכן ופיתוח הערוצים הדיגיטליים של המועצה.",
+                ],
+                en: [
+                  "Running spokesperson operations and day-to-day relations with national and local media.",
+                  "Initiating strategic partnerships and coalitions between local authorities and civil-society organizations.",
+                  "Managing, creating content for and developing the council's digital channels.",
+                ],
+              },
+            },
+            {
+              years: { he: "2016", en: "2016" },
+              title: { he: "מנהלת משרד", en: "Office Manager" },
+              org: { he: "מטה ניר ברקת", en: "Nir Barkat headquarters" },
+              bullets: {
+                he: [
+                  "ניהול אדמיניסטרטיבי, לוגיסטי ותפעולי של המטה, כולל יומן מורכב ותיאום סיורים.",
+                  "הקמה ותפעול של מערך רישום, קליטה וגיוס שהביא להצטרפותם של אלפי פעילים חדשים.",
+                ],
+                en: [
+                  "Administrative, logistical and operational management of the headquarters, including a complex calendar and tour coordination.",
+                  "Building and running a registration and recruitment operation that brought in thousands of new activists.",
+                ],
+              },
+            },
+          ],
+        },
+        background: {
+          eyebrow: { he: "רקע", en: "Background" },
+          title: {
+            he: "השכלה, כישורים והתנדבות",
+            en: "Education, skills, volunteering",
+          },
+          educationTitle: { he: "השכלה", en: "Education" },
+          skillsTitle: { he: "כישורים ושפות", en: "Skills & languages" },
+          volunteerTitle: { he: "התנדבות", en: "Volunteering" },
+          languagesLabel: { he: "שפות", en: "Languages" },
+          education: [
+            {
+              period: "2021–2022",
+              text: {
+                he: "M.A. בהצטיינות — ממשל, מדיניות ציבורית ושיווק פוליטי, אוניברסיטת רייכמן",
+                en: "M.A. with honors — Government, Public Policy & Political Marketing, Reichman University",
+              },
+            },
+            {
+              period: "2016–2019",
+              text: {
+                he: "B.A. — פוליטיקה וממשל ותקשורת, אוניברסיטת בן גוריון",
+                en: "B.A. — Politics & Government and Communications, Ben-Gurion University",
+              },
+            },
+            {
+              period: "2024",
+              text: {
+                he: "תעודת דירקטורית — האוניברסיטה העברית",
+                en: "Certified Director — Hebrew University",
+              },
+            },
+            {
+              period: "2012–2014",
+              text: {
+                he: "שירות מלא, חיל האוויר",
+                en: "Israeli Air Force — full service",
+              },
+            },
+          ],
+          skills: [
+            { he: "אסטרטגיה ולובינג", en: "Strategy & lobbying" },
+            { he: "ניהול ארגוני", en: "Organizational management" },
+            { he: "קשרי ממשל", en: "Government relations" },
+            { he: "גיוס המונים", en: "Grassroots mobilization" },
+            { he: "ניהול קמפיינים", en: "Campaign management" },
+            { he: "הפקת אירועים", en: "Event production" },
+            { he: "ניו־מדיה", en: "New media" },
+            { he: "כתיבת תוכן", en: "Content writing" },
+          ],
+          languages: {
+            he: "עברית — שפת אם · אנגלית — גבוהה · ספרדית — גבוהה",
+            en: "Hebrew — native · English — advanced · Spanish — advanced",
+          },
+          volunteering: [
+            {
+              title: {
+                he: "״15 דקות״ לקידום התחבורה הציבורית",
+                en: '"15 Minutes" — public transport advocacy',
+              },
+              text: {
+                he: "חברת ועדת ביקורת — פיקוח על הדו״ח הכספי וייעוץ למנכ״לית",
+                en: "Audit committee member — financial oversight and advisory to the CEO",
+              },
+            },
+            {
+              title: { he: "״מפגינות נוכחות״", en: '"Mafginot Nokhachot"' },
+              text: {
+                he: "הדרכת מתנדבים בהשתתפות פעילה בכנסת",
+                en: "Training volunteers on active participation in the Knesset",
+              },
+            },
+          ],
+        },
+        contact: {
+          eyebrow: { he: "יצירת קשר", en: "Get in touch" },
+          title: { he: "בואו נדבר.", en: "Let's talk." },
+          text: {
+            he: "פתוחה לתפקידי ניהול ודירקטוריון, ייעוץ אסטרטגי, הרצאות ופאנלים.",
+            en: "Open to board positions, executive roles, strategic consulting and speaking engagements.",
+          },
+          email: "naamaco04@gmail.com",
+          linkedin: "",
+          instagram: "https://www.instagram.com/naamaco1",
+          facebook: "https://www.facebook.com/naama.cohen.31",
+        },
+        footer: { he: "© 2026 נעמה כהן", en: "© 2026 Naama Cohen" },
+      };
+      applyContent();
+      observe(".reveal");
     </script>
-
   </body>
 </html>

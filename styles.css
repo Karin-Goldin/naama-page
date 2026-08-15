@@ -542,6 +542,7 @@ button:focus-visible {
   grid-template-columns: 1.15fr 0.85fr;
   min-height: 85vh;
   background: var(--ink);
+  color: var(--paper);
   position: relative;
   overflow: hidden;
 }
@@ -605,6 +606,7 @@ button:focus-visible {
   font-size: clamp(1.8rem, 4.2vw, 3.3rem);
   line-height: 1.12;
   letter-spacing: -0.03em;
+  color: #fff;
 }
 .moment__src {
   margin: 1.6rem 0 0;
