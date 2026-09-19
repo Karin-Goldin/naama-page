@@ -33,7 +33,7 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="styles.css?v=6" />
+    <link rel="stylesheet" href="styles.css?v=7" />
   </head>
   <body>
     <div class="grain" aria-hidden="true"></div>
@@ -205,7 +205,7 @@
             <p class="eyebrow" data-bind="roles-eyebrow">ניסיון</p>
             <h2 data-bind="roles-title">תפקידים</h2>
           </div>
-          <div id="roles"></div>
+          <div class="timeline" id="roles"></div>
         </div>
       </section>
 
@@ -497,15 +497,21 @@
         const el = $("#roles");
         if (!el) return;
         el.innerHTML = CONTENT.roles.items
-          .map((r) => {
+          .map((r, i) => {
+            const years = t(r.years);
+            const yearNums = years.match(/\d{4}/g) || [];
+            const badge = yearNums[yearNums.length - 1] || years;
             const bullets = (r.bullets[lang] || r.bullets.he || [])
               .map((b) => `<li>${b}</li>`)
               .join("");
-            return `<article class="role reveal">
-      <div class="role__years" dir="ltr">${t(r.years)}</div>
-      <div>
+            const side = i % 2 === 0 ? "timeline__item--start" : "timeline__item--end";
+            return `<article class="timeline__item ${side} reveal">
+      <span class="timeline__dot" aria-hidden="true"></span>
+      <span class="timeline__badge">${badge}</span>
+      <div class="timeline__content">
         <h3>${t(r.title)}</h3>
         <p class="role__org">${t(r.org)}</p>
+        <p class="timeline__period" dir="ltr">${years}</p>
         <ul>${bullets}</ul>
       </div>
     </article>`;
